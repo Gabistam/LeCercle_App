@@ -1,0 +1,287 @@
+@import "tailwindcss";
+
+@theme {
+  /* === MEN PALETTE === */
+  --color-men-black: #0C0C0C;
+  --color-men-dark: #171719;
+  --color-men-dark-soft: #1E1E21;
+  --color-men-anthracite: #2C2C30;
+  --color-men-gray: #3A3A3F;
+  --color-men-gray-mid: #4C4B50;
+  --color-men-white: #F1F1F1;
+  --color-men-gray-light: #C8C8CC;
+  --color-men-gray-muted: #8A8A90;
+  --color-men-brass: #C9A84C;
+  --color-men-brass-light: #E0C278;
+  --color-men-brass-pale: #F0DEBA;
+  --color-men-brass-dark: #8A6E2A;
+  --color-men-leather: #6B3A1F;
+  --color-men-leather-light: #9A5C35;
+  --color-men-leather-pale: #C4865A;
+
+  /* === WOMEN PALETTE === */
+  --color-women-black: #0A0905;
+  --color-women-gold: #B89A5A;
+  --color-women-gold-light: #D4B97F;
+  --color-women-gold-pale: #EDE0C4;
+  --color-women-cream-100: #FAF7F2;
+  --color-women-cream-200: #F3EDE2;
+  --color-women-cream-300: #E8DDD0;
+  --color-women-taupe-400: #C9B8A8;
+  --color-women-taupe-500: #A89080;
+  --color-women-taupe-600: #7A6255;
+  --color-women-brown-700: #4A3428;
+  --color-women-rose-pale: #F5ECE8;
+  --color-women-rose-nude: #E8C9C0;
+  --color-women-rose-sand: #CDA99E;
+  --color-women-stone: #D6CEC6;
+}
+
+/* ============================================================
+   UNIVERSE CUSTOM PROPERTIES
+   Applied via data-universe="men|women|mixed" on wrapper divs
+   ============================================================ */
+
+:root {
+  /* Mixed / default — dark neutral */
+  --uni-bg: #0C0C0C;
+  --uni-bg-2: #171719;
+  --uni-surface: #1E1E21;
+  --uni-border: rgba(201, 168, 76, 0.2);
+  --uni-text: #F1F1F1;
+  --uni-text-muted: #8A8A90;
+  --uni-text-subtle: #5A5A60;
+  --uni-accent: #C9A84C;
+  --uni-accent-light: #E0C278;
+  --uni-accent-pale: #F0DEBA;
+  --uni-radius: 2px;
+  --uni-font-heading: var(--font-cormorant, Georgia, serif);
+  --uni-font-body: var(--font-jost, system-ui, sans-serif);
+  --uni-font-label: var(--font-jost, system-ui, sans-serif);
+}
+
+[data-universe="men"] {
+  --uni-bg: #0C0C0C;
+  --uni-bg-2: #171719;
+  --uni-surface: #1E1E21;
+  --uni-border: rgba(201, 168, 76, 0.25);
+  --uni-text: #F1F1F1;
+  --uni-text-muted: #8A8A90;
+  --uni-text-subtle: #5A5A60;
+  --uni-accent: #C9A84C;
+  --uni-accent-light: #E0C278;
+  --uni-accent-pale: #F0DEBA;
+  --uni-radius: 0px;
+  --uni-font-heading: var(--font-bebas, 'Arial Black', sans-serif);
+  --uni-font-body: var(--font-barlow, sans-serif);
+  --uni-font-label: var(--font-barlow-cond, sans-serif);
+}
+
+[data-universe="women"] {
+  --uni-bg: #FAF7F2;
+  --uni-bg-2: #F3EDE2;
+  --uni-surface: #E8DDD0;
+  --uni-border: rgba(184, 154, 90, 0.3);
+  --uni-text: #4A3428;
+  --uni-text-muted: #A89080;
+  --uni-text-subtle: #C9B8A8;
+  --uni-accent: #B89A5A;
+  --uni-accent-light: #D4B97F;
+  --uni-accent-pale: #EDE0C4;
+  --uni-radius: 6px;
+  --uni-font-heading: var(--font-cormorant, Georgia, serif);
+  --uni-font-body: var(--font-jost, system-ui, sans-serif);
+  --uni-font-label: var(--font-jost, system-ui, sans-serif);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+body {
+  background-color: #0C0C0C;
+  color: #F1F1F1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Universe wrapper takes over bg/fg from body */
+[data-universe] {
+  background-color: var(--uni-bg);
+  color: var(--uni-text);
+  font-family: var(--uni-font-body);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   UNIVERSE UTILITY CLASSES
+   ============================================================ */
+
+@utility bg-uni {
+  background-color: var(--uni-bg);
+}
+
+@utility bg-uni-2 {
+  background-color: var(--uni-bg-2);
+}
+
+@utility bg-uni-surface {
+  background-color: var(--uni-surface);
+}
+
+@utility text-uni {
+  color: var(--uni-text);
+}
+
+@utility text-uni-muted {
+  color: var(--uni-text-muted);
+}
+
+@utility text-uni-subtle {
+  color: var(--uni-text-subtle);
+}
+
+@utility text-uni-accent {
+  color: var(--uni-accent);
+}
+
+@utility border-uni {
+  border-color: var(--uni-border);
+}
+
+@utility font-heading {
+  font-family: var(--uni-font-heading);
+}
+
+@utility font-label {
+  font-family: var(--uni-font-label);
+}
+
+/* ============================================================
+   SHARED COMPONENT STYLES
+   ============================================================ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  background-color: var(--uni-accent);
+  color: var(--uni-bg);
+  font-family: var(--uni-font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: var(--uni-radius);
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background-color: var(--uni-accent-light);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 31px;
+  background-color: transparent;
+  color: var(--uni-text);
+  font-family: var(--uni-font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: var(--uni-radius);
+  border: 1px solid var(--uni-border);
+  transition: border-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-outline:hover {
+  border-color: var(--uni-accent);
+  color: var(--uni-accent);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--uni-text-muted);
+  font-family: var(--uni-font-label);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  color: var(--uni-accent);
+}
+
+/* Section title */
+.section-overline {
+  font-family: var(--uni-font-label);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--uni-accent);
+}
+
+/* Accent divider */
+.divider-accent {
+  width: 40px;
+  height: 1px;
+  background-color: var(--uni-accent);
+}
+
+/* ============================================================
+   MEN SPECIFIC
+   ============================================================ */
+
+[data-universe="men"] h1,
+[data-universe="men"] h2,
+[data-universe="men"] h3 {
+  font-family: var(--font-bebas, 'Arial Black', sans-serif);
+  letter-spacing: 0.05em;
+}
+
+[data-universe="men"] .section-overline {
+  font-family: var(--font-barlow-cond, sans-serif);
+}
+
+/* ============================================================
+   WOMEN SPECIFIC
+   ============================================================ */
+
+[data-universe="women"] h1,
+[data-universe="women"] h2,
+[data-universe="women"] h3 {
+  font-family: var(--font-cormorant, Georgia, serif);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   FOCUS & ACCESSIBILITY
+   ============================================================ */
+
+*:focus-visible {
+  outline: 2px solid var(--uni-accent);
+  outline-offset: 3px;
+}
