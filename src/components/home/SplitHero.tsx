@@ -92,6 +92,14 @@ export default function SplitHero() {
 
           {/* Contenu centré */}
           <div className="relative z-10 h-full flex flex-col items-start justify-center px-8 gap-4">
+            {/* Logo Homme */}
+            <Image
+              src="/images/logos/LogosSimples/logoSimpleHomme-LeCercle1.png"
+              alt="Le Cercle Homme"
+              width={100}
+              height={50}
+              style={{ objectFit: "contain", filter: "invert(1)", opacity: 0.85 }}
+            />
             {/* Overline */}
             <p
               className="text-xs tracking-widest uppercase"
@@ -114,7 +122,7 @@ export default function SplitHero() {
                   textShadow: "0 2px 20px rgba(0,0,0,0.5)",
                 }}
               >
-                Univers<br />
+                Espace<br />
                 <span style={{ color: "#C9A84C" }}>Homme</span>
               </h2>
             </div>
@@ -178,6 +186,14 @@ export default function SplitHero() {
 
           {/* Contenu centré, aligné à droite */}
           <div className="relative z-10 h-full flex flex-col items-end justify-center px-8 gap-4 text-right">
+            {/* Logo Femme */}
+            <Image
+              src="/images/logos/LogosSimples/logoSimpleFemme-LeCercle.webp"
+              alt="Le Cercle Femme"
+              width={100}
+              height={50}
+              style={{ objectFit: "contain", opacity: 0.88 }}
+            />
             {/* Overline */}
             <p
               className="text-xs tracking-widest uppercase"
@@ -200,7 +216,7 @@ export default function SplitHero() {
                   lineHeight: 0.9,
                 }}
               >
-                Univers<br />
+                Espace<br />
                 <span style={{ color: "#B89A5A" }}>Femme</span>
               </h2>
             </div>

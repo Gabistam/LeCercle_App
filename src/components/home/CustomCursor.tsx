@@ -10,6 +10,11 @@ export default function CustomCursor() {
   const [universe, setUniverse] = useState<CursorUniverse>("neutral");
   const [visible, setVisible] = useState(false);
   const [clicking, setClicking] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024);
+  }, []);
 
   useEffect(() => {
     let raf: number;
@@ -94,6 +99,8 @@ export default function CustomCursor() {
       : "rgba(201,168,76,0.35)";
 
   const ringSize = clicking ? 20 : 32;
+
+  if (isTouch) return null;
 
   return (
     <>
