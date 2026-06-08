@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import UniverseSwitch from "./UniverseSwitch";
@@ -62,19 +63,38 @@ export default function SiteHeader() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
         {/* Logo */}
-        <Link
-          href="/"
-          className="shrink-0 font-heading text-xl tracking-widest uppercase"
-          style={{
-            color: "var(--uni-text)",
-            fontFamily: isWomen
-              ? "var(--font-cormorant, Georgia, serif)"
-              : "var(--font-bebas, 'Arial Black', sans-serif)",
-            fontSize: isWomen ? "1.25rem" : "1.5rem",
-            letterSpacing: isWomen ? "0.15em" : "0.1em",
-          }}
-        >
-          Le Cercle
+        <Link href="/" className="shrink-0 flex items-center">
+          {isMen ? (
+            <Image
+              src="/images/logos/LogosSimples/logoSimpleHomme-LeCercle.webp"
+              alt="Le Cercle — Univers Homme"
+              width={80}
+              height={40}
+              style={{ objectFit: "contain", filter: "invert(1)", opacity: 0.9 }}
+              priority
+            />
+          ) : isWomen ? (
+            <Image
+              src="/images/logos/LogosSimples/logoSimpleFemme-LeCercle.webp"
+              alt="Le Cercle — Univers Femme"
+              width={80}
+              height={40}
+              style={{ objectFit: "contain", opacity: 0.92 }}
+              priority
+            />
+          ) : (
+            <span
+              className="font-heading text-xl tracking-widest uppercase"
+              style={{
+                color: "var(--uni-text)",
+                fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
+                fontSize: "1.5rem",
+                letterSpacing: "0.1em",
+              }}
+            >
+              Le Cercle
+            </span>
+          )}
         </Link>
 
         {/* Desktop nav */}

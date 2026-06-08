@@ -9,12 +9,7 @@ export const metadata: Metadata = {
     "Choisissez votre salon Le Cercle et réservez votre prestation barber ou grooming via Fresha.",
 };
 
-const serviceHighlights = [
-  { icon: "/icons/icon-scissors.svg",    label: "Coupe" },
-  { icon: "/icons/icon-razor.svg",       label: "Barbe" },
-  { icon: "/icons/icon-barber-chair.svg",label: "Rituel" },
-  { icon: "/icons/icon-hand.svg",        label: "Soin" },
-];
+const serviceHighlights = ["Coupe", "Barbe", "Rituel", "Soin"];
 
 export default function HommeReservationPage() {
   return (
@@ -37,6 +32,7 @@ export default function HommeReservationPage() {
           <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #0C0C0C 45%, transparent 100%)" }} />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #0C0C0C 0%, transparent 40%)" }} />
         </div>
+
         <div className="max-w-3xl mx-auto flex flex-col gap-6 relative z-10">
           <p
             className="text-xs tracking-widest uppercase opacity-50"
@@ -61,29 +57,15 @@ export default function HommeReservationPage() {
           </p>
 
           {/* Services rapides */}
-          <div className="flex items-center gap-6 mt-2">
+          <div className="flex items-center gap-4 mt-2 flex-wrap">
             {serviceHighlights.map((s) => (
-              <div key={s.label} className="flex flex-col items-center gap-2">
-                <div
-                  className="w-10 h-10 flex items-center justify-center border"
-                  style={{ borderColor: "rgba(201,168,76,0.3)", backgroundColor: "rgba(201,168,76,0.06)" }}
-                >
-                  <Image
-                    src={s.icon}
-                    alt={s.label}
-                    width={18}
-                    height={18}
-                    unoptimized
-                    style={{ opacity: 0.7, filter: "invert(72%) sepia(40%) saturate(400%) hue-rotate(5deg)" }}
-                  />
-                </div>
-                <span
-                  className="text-xs tracking-widest uppercase"
-                  style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)", opacity: 0.6 }}
-                >
-                  {s.label}
-                </span>
-              </div>
+              <span
+                key={s}
+                className="text-xs tracking-widest uppercase px-3 py-1.5 border"
+                style={{ color: "#C9A84C", borderColor: "rgba(201,168,76,0.3)", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
+              >
+                {s}
+              </span>
             ))}
           </div>
         </div>
@@ -108,10 +90,7 @@ export default function HommeReservationPage() {
                   className="object-cover"
                   style={{ filter: "brightness(0.75) saturate(0.8)" }}
                 />
-                <div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(to top, #1E1E21 0%, transparent 60%)" }}
-                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #1E1E21 0%, transparent 60%)" }} />
                 <div className="absolute top-3 left-4">
                   <span
                     className="text-xs tracking-widest uppercase px-2 py-1"
@@ -137,17 +116,9 @@ export default function HommeReservationPage() {
                     {salon.city}
                   </p>
                   <p
-                    className="text-xs opacity-40 flex items-center gap-2"
+                    className="text-xs opacity-40"
                     style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow, sans-serif)", fontWeight: 300 }}
                   >
-                    <Image
-                      src="/icons/icon-location-pin.svg"
-                      alt=""
-                      width={12}
-                      height={12}
-                      unoptimized
-                      style={{ opacity: 0.5, filter: "invert(1)" }}
-                    />
                     {salon.address}, {salon.postalCode}
                   </p>
                 </div>
@@ -198,36 +169,21 @@ export default function HommeReservationPage() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              { n: "1", icon: "/icons/icon-location-pin.svg", t: "Choisissez votre salon", d: "Sélectionnez l'adresse la plus proche." },
-              { n: "2", icon: "/icons/icon-scissors.svg",     t: "Choisissez votre prestation", d: "Coupe, barbe, rituel ou soin capillaire." },
-              { n: "3", icon: "/icons/icon-clock.svg",        t: "Confirmez sur Fresha", d: "Créneau, coordonnées et paiement sécurisé." },
+              { n: "1", t: "Choisissez votre salon",      d: "Sélectionnez l'adresse la plus proche." },
+              { n: "2", t: "Choisissez votre prestation", d: "Coupe, barbe, rituel ou soin capillaire." },
+              { n: "3", t: "Confirmez sur Fresha",        d: "Créneau, coordonnées et paiement sécurisé." },
             ].map((step) => (
               <div
                 key={step.n}
                 className="flex flex-col gap-3 p-4 border"
                 style={{ borderColor: "rgba(201,168,76,0.12)", backgroundColor: "rgba(201,168,76,0.03)" }}
               >
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-8 h-8 flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.25)" }}
-                  >
-                    <Image
-                      src={step.icon}
-                      alt=""
-                      width={14}
-                      height={14}
-                      unoptimized
-                      style={{ opacity: 0.7, filter: "invert(72%) sepia(40%) saturate(400%) hue-rotate(5deg)" }}
-                    />
-                  </div>
-                  <span
-                    className="text-2xl opacity-25"
-                    style={{ color: "#C9A84C", fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)" }}
-                  >
-                    {step.n}
-                  </span>
-                </div>
+                <span
+                  className="text-3xl opacity-30"
+                  style={{ color: "#C9A84C", fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)" }}
+                >
+                  {step.n}
+                </span>
                 <p className="text-sm font-medium" style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow-cond, sans-serif)" }}>{step.t}</p>
                 <p className="text-xs opacity-40" style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow, sans-serif)", fontWeight: 300 }}>{step.d}</p>
               </div>

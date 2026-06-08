@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import SiteFooter from "@/components/layout/SiteFooter";
-import CustomCursor from "@/components/home/CustomCursor";
 import SplitHero from "@/components/home/SplitHero";
 import ManifesteTicker from "@/components/home/ManifesteTicker";
 import PiliersMiroir from "@/components/home/PiliersMiroir";
@@ -16,7 +15,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div data-universe="mixed">
-      <CustomCursor />
       <main>
         <SplitHero />
         <ManifesteTicker />

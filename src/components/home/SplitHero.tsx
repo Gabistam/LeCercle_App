@@ -62,16 +62,18 @@ export default function SplitHero() {
     y: scrollY * 0.35 + mouse.y * -8,
   };
 
-  /* ── MOBILE : deux panneaux empilés ── */
+  /* ── MOBILE / TABLET : deux panneaux empilés, split fixe 50/50 ── */
   if (isMobile) {
     return (
-      <section className="flex flex-col" style={{ minHeight: "100svh" }}>
-        {/* Panneau Homme */}
+      <section className="flex flex-col" style={{ height: "100svh" }}>
+
+        {/* ── Panneau Homme (haut) ── */}
         <Link
           href="/homme"
-          className="relative flex flex-col justify-end overflow-hidden"
-          style={{ flex: 1, minHeight: "50svh", backgroundColor: "#0C0C0C" }}
+          className="relative overflow-hidden"
+          style={{ flex: "0 0 50%", backgroundColor: "#0C0C0C" }}
         >
+          {/* Image de fond */}
           <div className="absolute inset-0 pointer-events-none">
             <Image
               src="/images/men/men-hero-barber.webp"
@@ -81,57 +83,86 @@ export default function SplitHero() {
               sizes="100vw"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0" style={{ backgroundColor: "rgba(12,12,12,0.65)" }} />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(12,12,12,0.9) 0%, transparent 50%)" }} />
+            <div className="absolute inset-0" style={{ backgroundColor: "rgba(12,12,12,0.60)" }} />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(105deg, rgba(201,168,76,0.14) 0%, transparent 55%)" }} />
           </div>
-          <div className="relative z-10 flex flex-col gap-3 px-6 pb-8">
-            <Image
-              src="/images/logos/logo-homme1.png"
-              alt="Le Cercle — Univers Homme"
-              width={180}
-              height={90}
-              style={{ objectFit: "contain", opacity: 0.9 }}
-            />
-            <h2
-              className="uppercase leading-none"
-              style={{
-                color: "#F1F1F1",
-                fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-                fontSize: "clamp(2.5rem, 12vw, 4rem)",
-                letterSpacing: "0.06em",
-              }}
+
+          {/* Séparateur bas — ligne fixe */}
+          <div className="absolute bottom-0 left-0 right-0 h-px z-10" style={{ backgroundColor: "rgba(201,168,76,0.5)" }} />
+
+          {/* Contenu centré */}
+          <div className="relative z-10 h-full flex flex-col items-start justify-center px-8 gap-4">
+            {/* Overline */}
+            <p
+              className="text-xs tracking-widest uppercase"
+              style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)", opacity: 0.7, letterSpacing: "0.3em" }}
             >
-              Univers <span style={{ color: "#C9A84C" }}>Homme</span>
-            </h2>
-            <ul className="flex flex-col gap-1.5">
+              01 — Barber · Grooming
+            </p>
+
+            {/* Titre */}
+            <div className="flex flex-col gap-1">
+              <div className="w-8 h-px" style={{ backgroundColor: "rgba(201,168,76,0.6)" }} />
+              <h2
+                className="uppercase leading-none"
+                style={{
+                  color: "#F1F1F1",
+                  fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
+                  fontSize: "clamp(3rem, 14vw, 5rem)",
+                  letterSpacing: "0.06em",
+                  lineHeight: 0.9,
+                  textShadow: "0 2px 20px rgba(0,0,0,0.5)",
+                }}
+              >
+                Univers<br />
+                <span style={{ color: "#C9A84C" }}>Homme</span>
+              </h2>
+            </div>
+
+            {/* Services */}
+            <ul className="flex flex-col gap-1">
               {["Coupe & Barbe", "Rituel serviette chaude", "Soin du visage"].map((s) => (
                 <li
                   key={s}
-                  className="flex items-center gap-2 text-xs tracking-widest uppercase"
-                  style={{ color: "#C0C0C8", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
+                  className="text-xs tracking-widest uppercase"
+                  style={{ color: "rgba(192,192,200,0.75)", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
                 >
-                  <span className="inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: "#C9A84C" }} />
                   {s}
                 </li>
               ))}
             </ul>
+
+            {/* CTA */}
             <div
-              className="btn-primary self-start mt-1"
-              style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "0.75rem", padding: "0.5rem 1.25rem" }}
+              className="btn-primary mt-1"
+              style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "0.7rem", padding: "0.6rem 1.5rem" }}
             >
               Entrer
             </div>
           </div>
-          {/* Bordure dorée en bas */}
-          <div className="absolute bottom-0 left-0 right-0 h-px" style={{ backgroundColor: "rgba(201,168,76,0.4)" }} />
+
+          {/* Lettre décorative */}
+          <div
+            className="absolute right-6 top-1/2 -translate-y-1/2 select-none pointer-events-none"
+            style={{
+              fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
+              fontSize: "clamp(6rem, 20vw, 10rem)",
+              lineHeight: 1,
+              color: "#F1F1F1",
+              opacity: 0.04,
+            }}
+          >
+            H
+          </div>
         </Link>
 
-        {/* Panneau Femme */}
+        {/* ── Panneau Femme (bas) ── */}
         <Link
           href="/femme"
-          className="relative flex flex-col justify-end overflow-hidden"
-          style={{ flex: 1, minHeight: "50svh", backgroundColor: "#FAF7F2" }}
+          className="relative overflow-hidden"
+          style={{ flex: "0 0 50%", backgroundColor: "#FAF7F2" }}
         >
+          {/* Image de fond */}
           <div className="absolute inset-0 pointer-events-none">
             <Image
               src="/images/women/women-hero-beauty-studio.webp"
@@ -141,49 +172,76 @@ export default function SplitHero() {
               sizes="100vw"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0" style={{ backgroundColor: "rgba(250,247,242,0.55)" }} />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(250,247,242,0.92) 0%, transparent 50%)" }} />
+            <div className="absolute inset-0" style={{ backgroundColor: "rgba(250,247,242,0.62)" }} />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(255deg, rgba(184,154,90,0.18) 0%, transparent 55%)" }} />
           </div>
-          <div className="relative z-10 flex flex-col items-end gap-3 px-6 pb-8 text-right">
-            <Image
-              src="/images/logos/logo-femme1.png"
-              alt="Le Cercle — Univers Femme"
-              width={180}
-              height={90}
-              style={{ objectFit: "contain", opacity: 0.9 }}
-            />
-            <h2
-              className="leading-none italic"
-              style={{
-                color: "#4A3428",
-                fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(2.5rem, 11vw, 4rem)",
-                fontWeight: 300,
-                letterSpacing: "0.02em",
-              }}
+
+          {/* Contenu centré, aligné à droite */}
+          <div className="relative z-10 h-full flex flex-col items-end justify-center px-8 gap-4 text-right">
+            {/* Overline */}
+            <p
+              className="text-xs tracking-widest uppercase"
+              style={{ color: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)", opacity: 0.7, letterSpacing: "0.25em" }}
             >
-              Univers <span style={{ color: "#B89A5A" }}>Femme</span>
-            </h2>
-            <ul className="flex flex-col items-end gap-1.5">
+              02 — Nail Bar · Soins
+            </p>
+
+            {/* Titre */}
+            <div className="flex flex-col items-end gap-1">
+              <div className="w-8 h-px" style={{ backgroundColor: "rgba(184,154,90,0.6)" }} />
+              <h2
+                className="leading-none italic"
+                style={{
+                  color: "#4A3428",
+                  fontFamily: "var(--font-cormorant, Georgia, serif)",
+                  fontSize: "clamp(2.8rem, 13vw, 4.5rem)",
+                  fontWeight: 300,
+                  letterSpacing: "0.02em",
+                  lineHeight: 0.9,
+                }}
+              >
+                Univers<br />
+                <span style={{ color: "#B89A5A" }}>Femme</span>
+              </h2>
+            </div>
+
+            {/* Services */}
+            <ul className="flex flex-col items-end gap-1">
               {["Manucure & Nail Bar", "Soins visage", "Épilation & Regard"].map((s) => (
                 <li
                   key={s}
-                  className="flex items-center gap-2 text-xs tracking-widest uppercase"
-                  style={{ color: "#7A6858", fontFamily: "var(--font-jost, sans-serif)" }}
+                  className="text-xs tracking-widest uppercase"
+                  style={{ color: "rgba(122,104,88,0.85)", fontFamily: "var(--font-jost, sans-serif)" }}
                 >
                   {s}
-                  <span className="inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: "#B89A5A" }} />
                 </li>
               ))}
             </ul>
+
+            {/* CTA */}
             <div
-              className="btn-primary self-end mt-1"
-              style={{ backgroundColor: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)", fontSize: "0.75rem", padding: "0.5rem 1.25rem" }}
+              className="btn-primary mt-1"
+              style={{ backgroundColor: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)", fontSize: "0.7rem", padding: "0.6rem 1.5rem" }}
             >
               Entrer
             </div>
           </div>
+
+          {/* Lettre décorative */}
+          <div
+            className="absolute left-6 top-1/2 -translate-y-1/2 select-none pointer-events-none italic"
+            style={{
+              fontFamily: "var(--font-cormorant, Georgia, serif)",
+              fontSize: "clamp(6rem, 20vw, 10rem)",
+              lineHeight: 1,
+              color: "#4A3428",
+              opacity: 0.06,
+            }}
+          >
+            F
+          </div>
         </Link>
+
       </section>
     );
   }
@@ -327,7 +385,7 @@ export default function SplitHero() {
           <div className="absolute inset-0" style={{ backgroundColor: "rgba(250,247,242,0.55)" }} />
           <div className="absolute inset-0" style={{ background: "linear-gradient(255deg, rgba(184,154,90,0.2) 0%, transparent 55%)" }} />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(250,247,242,0.9) 0%, transparent 40%)" }} />
-          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 65% 65% at 100% 0%, rgba(30,18,12,0.82) 0%, rgba(30,18,12,0.45) 45%, transparent 70%)" }} />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 70% at 100% 0%, rgba(10,8,5,0.92) 0%, rgba(20,14,8,0.72) 35%, rgba(30,18,12,0.35) 60%, transparent 80%)" }} />
         </div>
 
         <div

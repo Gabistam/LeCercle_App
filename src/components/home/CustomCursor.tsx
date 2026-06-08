@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type CursorSide = "men" | "women" | "neutral";
+type CursorUniverse = "men" | "women" | "neutral";
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const [side, setSide] = useState<CursorSide>("neutral");
+  const [universe, setUniverse] = useState<CursorUniverse>("neutral");
   const [visible, setVisible] = useState(false);
   const [clicking, setClicking] = useState(false);
 
@@ -16,15 +16,24 @@ export default function CustomCursor() {
     let mx = 0, my = 0;
     let rx = 0, ry = 0;
 
+    const getUniverseFromPoint = (x: number, y: number): CursorUniverse => {
+      const el = document.elementFromPoint(x, y);
+      const wrapper = el?.closest("[data-universe]");
+      const val = wrapper?.getAttribute("data-universe");
+      if (val === "men") return "men";
+      if (val === "women") return "women";
+      // Sur la homepage SplitHero, fallback position gauche/droite
+      const half = window.innerWidth / 2;
+      if (x < half - 40) return "men";
+      if (x > half + 40) return "women";
+      return "neutral";
+    };
+
     const onMove = (e: MouseEvent) => {
       mx = e.clientX;
       my = e.clientY;
 
-      // Detect which side of the screen the cursor is on
-      const half = window.innerWidth / 2;
-      if (mx < half - 40) setSide("men");
-      else if (mx > half + 40) setSide("women");
-      else setSide("neutral");
+      setUniverse(getUniverseFromPoint(mx, my));
 
       if (dotRef.current) {
         dotRef.current.style.left = mx + "px";
@@ -47,12 +56,8 @@ export default function CustomCursor() {
     const onDown = () => setClicking(true);
     const onUp = () => setClicking(false);
 
-    // Grow ring on interactive elements
-    const onHoverEl = (e: Event) => {
-      const target = e.currentTarget as HTMLElement;
-      if (target.matches("a, button, [data-cursor-grow]")) {
-        if (ringRef.current) ringRef.current.dataset.grow = "1";
-      }
+    const onHoverEl = () => {
+      if (ringRef.current) ringRef.current.dataset.grow = "1";
     };
     const onLeaveEl = () => {
       if (ringRef.current) delete ringRef.current.dataset.grow;
@@ -81,15 +86,12 @@ export default function CustomCursor() {
     };
   }, []);
 
-  const dotColor =
-    side === "men" ? "#C9A84C" : side === "women" ? "#B89A5A" : "#C9A84C";
+  const dotColor = universe === "women" ? "#B89A5A" : "#C9A84C";
 
   const ringColor =
-    side === "men"
-      ? "rgba(201,168,76,0.4)"
-      : side === "women"
-        ? "rgba(184,154,90,0.4)"
-        : "rgba(201,168,76,0.25)";
+    universe === "women"
+      ? "rgba(184,154,90,0.4)"
+      : "rgba(201,168,76,0.35)";
 
   const ringSize = clicking ? 20 : 32;
 

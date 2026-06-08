@@ -7,6 +7,7 @@ import {
   Barlow,
 } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "@/components/home/CustomCursor";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -91,7 +92,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={fontVars}>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }

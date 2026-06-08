@@ -11,14 +11,16 @@ type ServiceCardProps = {
   service: Service;
   index?: number;
   universe: "men" | "women";
+  onLight?: boolean; // women only: true = section claire (#FAF7F2) → carte sur #F3EDE2
 };
 
-export default function ServiceCard({ service, index = 0, universe }: ServiceCardProps) {
+export default function ServiceCard({ service, index = 0, universe, onLight = true }: ServiceCardProps) {
   const [hovered, setHovered] = useState(false);
   const isMen = universe === "men";
 
-  const bgColor     = isMen ? "#1E1E21" : "#FAF7F2";
-  const bgHover     = isMen ? "#252528" : "#F3EDE2";
+  // Pour women : si la section est claire, la carte est sur le fond crème foncé, et inversement
+  const bgColor     = isMen ? "#1E1E21" : onLight ? "#F3EDE2" : "#FAF7F2";
+  const bgHover     = isMen ? "#252528" : onLight ? "#EBE4D6" : "#F3EDE2";
   const textColor   = isMen ? "#F1F1F1" : "#4A3428";
   const mutedColor  = isMen ? "#8A8A90" : "#A89080";
   const accentColor = isMen ? "#C9A84C" : "#B89A5A";

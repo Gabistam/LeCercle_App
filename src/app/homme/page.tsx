@@ -218,11 +218,9 @@ export default function HommePage() {
               ].map((item) => (
                 <li
                   key={item.label}
-                  className="flex gap-4 pt-4 border-t items-start"
+                  className="flex flex-col gap-1 pt-4 border-t"
                   style={{ borderColor: "rgba(201,168,76,0.15)" }}
                 >
-                  <Image src={item.icon} alt="" aria-hidden width={18} height={18} unoptimized style={{ marginTop: 2, opacity: 0.6, filter: "invert(72%) sepia(40%) saturate(400%) hue-rotate(5deg)", flexShrink: 0 }} />
-                  <div className="flex flex-col gap-1">
                   <span
                     className="text-sm font-medium tracking-wide uppercase"
                     style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
@@ -235,7 +233,6 @@ export default function HommePage() {
                   >
                     {item.desc}
                   </span>
-                  </div>
                 </li>
               ))}
             </ul>

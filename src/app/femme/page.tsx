@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import SalonsPreview from "@/components/sections/SalonsPreview";
+import ServiceCard from "@/components/services/ServiceCard";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
@@ -129,54 +130,8 @@ export default function FemmePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-            {featuredServices.map((svc) => (
-              <div
-                key={svc.id}
-                className="flex flex-col gap-3 p-6 border"
-                style={{
-                  backgroundColor: "#FAF7F2",
-                  borderColor: "rgba(184,154,90,0.2)",
-                  borderRadius: "6px",
-                }}
-              >
-                <h3
-                  className="text-lg leading-snug italic"
-                  style={{
-                    color: "#4A3428",
-                    fontFamily: "var(--font-cormorant, Georgia, serif)",
-                    fontWeight: 400,
-                  }}
-                >
-                  {svc.title}
-                </h3>
-                <p
-                  className="text-xs leading-relaxed opacity-60 flex-1"
-                  style={{
-                    color: "#4A3428",
-                    fontFamily: "var(--font-jost, sans-serif)",
-                    fontWeight: 300,
-                  }}
-                >
-                  {svc.shortDescription}
-                </p>
-                <div
-                  className="flex items-center justify-between pt-3 border-t"
-                  style={{ borderColor: "rgba(184,154,90,0.2)" }}
-                >
-                  <span
-                    className="text-xs opacity-50"
-                    style={{ color: "#4A3428", fontFamily: "var(--font-jost, sans-serif)" }}
-                  >
-                    {svc.durationLabel}
-                  </span>
-                  <span
-                    className="text-sm"
-                    style={{ color: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)", fontWeight: 400 }}
-                  >
-                    {svc.priceLabel}
-                  </span>
-                </div>
-              </div>
+            {featuredServices.map((svc, i) => (
+              <ServiceCard key={svc.id} service={svc} index={i} universe="women" onLight={false} />
             ))}
           </div>
 
@@ -235,11 +190,9 @@ export default function FemmePage() {
               ].map((item) => (
                 <li
                   key={item.label}
-                  className="flex gap-4 pt-4 border-t items-start"
+                  className="flex flex-col gap-1 pt-4 border-t"
                   style={{ borderColor: "rgba(184,154,90,0.2)" }}
                 >
-                  <Image src={item.icon} alt="" aria-hidden width={18} height={18} unoptimized style={{ marginTop: 2, opacity: 0.55, filter: "invert(55%) sepia(30%) saturate(500%) hue-rotate(5deg)", flexShrink: 0 }} />
-                  <div className="flex flex-col gap-1">
                   <span
                     className="text-sm tracking-wide"
                     style={{ color: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)", fontWeight: 500 }}
@@ -252,7 +205,6 @@ export default function FemmePage() {
                   >
                     {item.desc}
                   </span>
-                  </div>
                 </li>
               ))}
             </ul>

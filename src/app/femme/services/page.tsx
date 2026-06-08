@@ -4,6 +4,7 @@ import Image from "next/image";
 import { services, packs } from "@/data/services";
 import ServiceCard from "@/components/services/ServiceCard";
 import { IconNailPolish, IconMassage, IconPadelRacket, IconHand } from "@/components/icons/Icons";
+import PackCard from "@/components/services/PackCard";
 
 export const metadata: Metadata = {
   title: "Prestations Femme — Nail Bar, Massage & Rituels",
@@ -62,24 +63,27 @@ export default function FemmeServicesPage() {
         </div>
       </section>
 
-      {/* Services par catégorie */}
-      {categories.map((cat) => {
+      {/* Services par catégorie — alternance #FAF7F2 / #F3EDE2 */}
+      {categories.map((cat, catIndex) => {
         const catServices = services.filter(
           (s) => s.category === cat.key && (s.audience === "women" || s.audience === "unisex")
         );
         if (catServices.length === 0) return null;
+        // sections paires = fond clair, impaires = fond crème
+        const isLight = catIndex % 2 === 0;
+        const sectionBg = isLight ? "#FAF7F2" : "#F3EDE2";
+        const overlayBg = isLight ? "rgba(250,247,242,0.35)" : "rgba(243,237,226,0.35)";
         return (
           <section
             key={cat.key}
             className="py-16 px-6 border-t"
-            style={{ backgroundColor: "#FAF7F2", borderColor: "rgba(184,154,90,0.15)" }}
+            style={{ backgroundColor: sectionBg, borderColor: "rgba(184,154,90,0.15)" }}
           >
             <div className="max-w-7xl mx-auto flex flex-col gap-8">
-              {/* Header catégorie avec image */}
               <div className="flex items-center gap-6">
                 <div className="relative w-16 h-16 overflow-hidden shrink-0" style={{ borderRadius: "50%" }}>
                   <Image src={cat.img} alt="" fill sizes="64px" className="object-cover" />
-                  <div className="absolute inset-0" style={{ backgroundColor: "rgba(250,247,242,0.35)" }} />
+                  <div className="absolute inset-0" style={{ backgroundColor: overlayBg }} />
                   <span className="absolute inset-0 flex items-center justify-center" style={{ opacity: 0.9 }}>
                     <cat.Icon size={20} color="#B89A5A" />
                   </span>
@@ -93,7 +97,7 @@ export default function FemmeServicesPage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 {catServices.map((svc, i) => (
-                  <ServiceCard key={svc.id} service={svc} index={i} universe="women" />
+                  <ServiceCard key={svc.id} service={svc} index={i} universe="women" onLight={isLight} />
                 ))}
               </div>
             </div>
@@ -115,25 +119,12 @@ export default function FemmeServicesPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {womenPacks.map((pack) => (
-              <div
+              <PackCard
                 key={pack.id}
-                className="flex flex-col gap-3 p-6 border"
-                style={{ backgroundColor: "#FAF7F2", borderColor: "rgba(184,154,90,0.2)", borderRadius: "6px" }}
-              >
-                <span style={{ opacity: 0.45 }}><IconNailPolish size={18} color="#B89A5A" /></span>
-                <h3
-                  className="text-lg italic"
-                  style={{ color: "#4A3428", fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 400 }}
-                >
-                  {pack.name}
-                </h3>
-                <p className="text-xs opacity-60 flex-1" style={{ color: "#4A3428", fontFamily: "var(--font-jost, sans-serif)", fontWeight: 300 }}>
-                  {pack.contents}
-                </p>
-                <span className="text-sm" style={{ color: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)" }}>
-                  {pack.priceLabel}
-                </span>
-              </div>
+                pack={pack}
+                icon={<IconNailPolish size={18} color="#B89A5A" />}
+                universe="women"
+              />
             ))}
           </div>
         </div>
