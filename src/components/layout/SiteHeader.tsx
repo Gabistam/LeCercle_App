@@ -66,7 +66,7 @@ export default function SiteHeader() {
         <Link href="/" className="shrink-0 flex items-center">
           {isMen ? (
             <Image
-              src="/images/logos/LogosSimples/logoSimpleHomme-LeCercle.webp"
+              src="/images/logos/LogosSimples/logoSimpleHomme-LeCercle1.png"
               alt="Le Cercle — Univers Homme"
               width={80}
               height={40}
