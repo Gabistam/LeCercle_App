@@ -105,7 +105,7 @@ export default function SplitHero() {
               className="text-xs tracking-widest uppercase"
               style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)", opacity: 0.7, letterSpacing: "0.3em" }}
             >
-              01 — Barber · Grooming
+              Barber · Grooming
             </p>
 
             {/* Titre */}
@@ -199,7 +199,7 @@ export default function SplitHero() {
               className="text-xs tracking-widest uppercase"
               style={{ color: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)", opacity: 0.7, letterSpacing: "0.25em" }}
             >
-              02 — Nail Bar · Soins
+              Nail Bar · Soins
             </p>
 
             {/* Titre */}
