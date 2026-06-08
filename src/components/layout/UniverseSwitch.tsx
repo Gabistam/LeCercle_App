@@ -12,7 +12,7 @@ export default function UniverseSwitch({ compact = false }: { compact?: boolean 
   if (!isMen && !isWomen) return null;
 
   const href = isMen ? "/femme" : "/homme";
-  const label = isMen ? "Univers Femme" : "Univers Homme";
+  const label = isMen ? "Espace Femme" : "Espace Homme";
 
   if (compact) {
     return (

@@ -39,7 +39,7 @@ export default function FemmeServicesPage() {
             className="text-xs tracking-widest uppercase opacity-60"
             style={{ color: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)", letterSpacing: "0.3em" }}
           >
-            Univers Femme
+            Espace Femme
           </p>
           <div className="flex flex-col gap-2">
             <div className="w-10 h-px" style={{ backgroundColor: "#B89A5A" }} />

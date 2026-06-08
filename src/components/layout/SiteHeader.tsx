@@ -67,7 +67,7 @@ export default function SiteHeader() {
           {isMen ? (
             <Image
               src="/images/logos/LogosSimples/logoSimpleHomme-LeCercle1.png"
-              alt="Le Cercle — Univers Homme"
+              alt="Le Cercle — Espace Homme"
               width={80}
               height={40}
               style={{ objectFit: "contain", filter: "invert(1)", opacity: 0.9 }}
@@ -76,7 +76,7 @@ export default function SiteHeader() {
           ) : isWomen ? (
             <Image
               src="/images/logos/LogosSimples/logoSimpleFemme-LeCercle.webp"
-              alt="Le Cercle — Univers Femme"
+              alt="Le Cercle — Espace Femme"
               width={80}
               height={40}
               style={{ objectFit: "contain", opacity: 0.92 }}

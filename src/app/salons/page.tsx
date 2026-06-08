@@ -42,7 +42,7 @@ export default function SalonsPage() {
             className="text-sm leading-relaxed opacity-50 max-w-md"
             style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow, sans-serif)", fontWeight: 300 }}
           >
-            Trois adresses premium intégrées aux centres Casa Padel. Univers Homme et Femme disponibles dans chaque salon.
+            Trois adresses premium intégrées aux centres Casa Padel. Espaces Homme et Femme disponibles dans chaque salon.
           </p>
         </div>
       </section>

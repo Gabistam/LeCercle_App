@@ -65,13 +65,13 @@ export default function SiteFooter() {
             className="section-overline"
             style={{ fontFamily: "var(--uni-font-label)" }}
           >
-            Univers
+            Espaces
           </p>
           <nav className="flex flex-col gap-2">
             {[
-              { href: "/homme", label: "Univers Homme" },
+              { href: "/homme", label: "Espace Homme" },
               { href: "/homme/services", label: "Prestations Homme" },
-              { href: "/femme", label: "Univers Femme" },
+              { href: "/femme", label: "Espace Femme" },
               { href: "/femme/services", label: "Prestations Femme" },
               { href: "/a-propos", label: "À propos" },
             ].map((link) => (

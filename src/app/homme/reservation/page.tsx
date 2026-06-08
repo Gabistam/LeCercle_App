@@ -38,7 +38,7 @@ export default function HommeReservationPage() {
             className="text-xs tracking-widest uppercase opacity-50"
             style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)", letterSpacing: "0.3em" }}
           >
-            Univers Homme
+            Espace Homme
           </p>
           <div className="flex flex-col gap-2">
             <div className="w-10 h-px" style={{ backgroundColor: "#C9A84C" }} />

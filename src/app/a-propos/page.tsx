@@ -164,8 +164,8 @@ export default function AProposPage() {
         {/* CTAs */}
         <section className="py-16 px-6 border-t" style={{ backgroundColor: "#0C0C0C", borderColor: "rgba(201,168,76,0.1)" }}>
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center gap-4">
-            <Link href="/homme" className="btn-primary">Univers Homme</Link>
-            <Link href="/femme" className="btn-outline">Univers Femme</Link>
+            <Link href="/homme" className="btn-primary">Espace Homme</Link>
+            <Link href="/femme" className="btn-outline">Espace Femme</Link>
             <Link href="/investisseurs" className="btn-ghost">Investisseurs →</Link>
           </div>
         </section>

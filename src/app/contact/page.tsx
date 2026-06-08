@@ -115,7 +115,7 @@ export default function ContactPage() {
                 ))}
               </div>
               <p className="text-xs opacity-30" style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow, sans-serif)", fontWeight: 300 }}>
-                Pour réserver une prestation, utilisez les boutons Réserver sur les pages Univers Homme ou Univers Femme. La réservation s&apos;effectue via Fresha.
+                Pour réserver une prestation, utilisez les boutons Réserver sur les pages Espace Homme ou Espace Femme. La réservation s&apos;effectue via Fresha.
               </p>
             </div>
           </div>

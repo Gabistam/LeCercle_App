@@ -6,7 +6,7 @@ import ServiceCard from "@/components/services/ServiceCard";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
-  title: "Univers Femme — Beauty Studio & Nail Bar Premium",
+  title: "Espace Femme — Beauty Studio & Nail Bar Premium",
   description:
     "Manucure, nail bar, massages et rituels bien-être dans un cadre crème, nude et or au sein des centres Casa Padel.",
 };
@@ -48,7 +48,7 @@ export default function FemmePage() {
                 letterSpacing: "0.3em",
               }}
             >
-              Le Cercle — Univers Femme
+              Le Cercle — Espace Femme
             </p>
             <h1
               className="text-6xl md:text-8xl leading-none italic"

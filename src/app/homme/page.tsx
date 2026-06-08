@@ -5,7 +5,7 @@ import SalonsPreview from "@/components/sections/SalonsPreview";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
-  title: "Univers Homme — Barber & Grooming Premium",
+  title: "Espace Homme — Barber & Grooming Premium",
   description:
     "Coupe, barbe, rituel complet et soins capillaires dans un cadre club privé au sein des centres Casa Padel.",
 };
@@ -48,7 +48,7 @@ export default function HommePage() {
                 letterSpacing: "0.3em",
               }}
             >
-              Le Cercle — Univers Homme
+              Le Cercle — Espace Homme
             </p>
             <h1
               className="text-7xl md:text-[10rem] uppercase leading-none"

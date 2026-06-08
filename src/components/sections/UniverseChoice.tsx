@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function UniverseChoice() {
+export default function EspaceeChoice() {
   return (
     <section className="py-2 px-6" style={{ backgroundColor: "#0C0C0C" }}>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0.5">
@@ -44,7 +44,7 @@ export default function UniverseChoice() {
                 letterSpacing: "0.08em",
               }}
             >
-              Univers
+              Espace
               <br />
               Homme
             </h2>
@@ -128,7 +128,7 @@ export default function UniverseChoice() {
                 letterSpacing: "0.02em",
               }}
             >
-              Univers
+              Espace
               <br />
               Femme
             </h2>

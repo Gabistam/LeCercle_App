@@ -183,7 +183,7 @@ export default async function SalonPage({
         </div>
       </section>
 
-      {/* Univers Homme */}
+      {/* Espace Homme */}
       <section className="py-16 px-6" style={{ backgroundColor: "#0C0C0C" }}>
         <div className="max-w-7xl mx-auto flex flex-col gap-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -193,7 +193,7 @@ export default async function SalonPage({
                 className="text-4xl uppercase tracking-wide"
                 style={{ color: "#F1F1F1", fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)" }}
               >
-                Univers Homme
+                Espace Homme
               </h2>
             </div>
             <Link href="/homme/reservation" className="btn-primary self-start md:self-auto text-xs py-2 px-5">
@@ -211,7 +211,7 @@ export default async function SalonPage({
         </div>
       </section>
 
-      {/* Univers Femme */}
+      {/* Espace Femme */}
       <section className="py-16 px-6" style={{ backgroundColor: "#FAF7F2" }}>
         <div className="max-w-7xl mx-auto flex flex-col gap-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -221,7 +221,7 @@ export default async function SalonPage({
                 className="text-3xl italic"
                 style={{ color: "#4A3428", fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 400 }}
               >
-                Univers Femme
+                Espace Femme
               </h2>
             </div>
             <Link href="/femme/reservation" className="btn-primary self-start md:self-auto text-xs py-2 px-5">

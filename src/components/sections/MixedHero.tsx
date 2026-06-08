@@ -77,7 +77,7 @@ export default function MixedHero() {
           Le soin après l&apos;effort. L&apos;élégance avant tout.
         </p>
 
-        {/* Universe choice buttons */}
+        {/* Espacee choice buttons */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
           <Link
             href="/homme"
@@ -94,7 +94,7 @@ export default function MixedHero() {
                 fontFamily: "var(--font-barlow-cond, sans-serif)",
               }}
             >
-              Univers
+              Espace
             </span>
             <span
               className="text-2xl tracking-wide uppercase"
@@ -139,7 +139,7 @@ export default function MixedHero() {
                 fontFamily: "var(--font-jost, sans-serif)",
               }}
             >
-              Univers
+              Espace
             </span>
             <span
               className="text-xl italic"
