@@ -238,7 +238,7 @@ export default function FemmePage() {
                   className="flex gap-4 pt-4 border-t items-start"
                   style={{ borderColor: "rgba(184,154,90,0.2)" }}
                 >
-                  <img src={item.icon} aria-hidden width={18} height={18} style={{ marginTop: 2, opacity: 0.55, filter: "invert(55%) sepia(30%) saturate(500%) hue-rotate(5deg)" }} />
+                  <Image src={item.icon} alt="" aria-hidden width={18} height={18} unoptimized style={{ marginTop: 2, opacity: 0.55, filter: "invert(55%) sepia(30%) saturate(500%) hue-rotate(5deg)", flexShrink: 0 }} />
                   <div className="flex flex-col gap-1">
                   <span
                     className="text-sm tracking-wide"

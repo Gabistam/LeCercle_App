@@ -25,12 +25,14 @@ export default function SiteHeader() {
 
   const navLinks = isMen
     ? [
+        { href: "/homme", label: "Accueil" },
         { href: "/homme/services", label: "Prestations" },
         { href: "/homme/salons", label: "Salons" },
         { href: "/homme/reservation", label: "Réserver" },
       ]
     : isWomen
       ? [
+          { href: "/femme", label: "Accueil" },
           { href: "/femme/services", label: "Prestations" },
           { href: "/femme/salons", label: "Salons" },
           { href: "/femme/reservation", label: "Réserver" },

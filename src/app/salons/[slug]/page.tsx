@@ -4,6 +4,8 @@ import Link from "next/link";
 import { salons } from "@/data/salons";
 import { services } from "@/data/services";
 import ServiceCard from "@/components/services/ServiceCard";
+import SiteHeader from "@/components/layout/SiteHeader";
+import SiteFooter from "@/components/layout/SiteFooter";
 
 export function generateStaticParams() {
   return salons.map((s) => ({ slug: s.slug }));
@@ -46,6 +48,8 @@ export default async function SalonPage({
 
   return (
     <div data-universe="mixed">
+      <SiteHeader />
+      <main>
       {/* Hero */}
       <section
         className="pt-32 pb-16 px-6"
@@ -258,6 +262,8 @@ export default async function SalonPage({
           }),
         }}
       />
+      </main>
+      <SiteFooter />
     </div>
   );
 }

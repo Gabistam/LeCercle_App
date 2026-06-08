@@ -4,6 +4,7 @@ import Image from "next/image";
 import { services, packs } from "@/data/services";
 import ServiceCard from "@/components/services/ServiceCard";
 import { IconScissors, IconRazor, IconBarberChair, IconHand } from "@/components/icons/Icons";
+import PackCard from "@/components/services/PackCard";
 
 export const metadata: Metadata = {
   title: "Prestations Homme — Barber, Grooming & Soins capillaires",
@@ -121,25 +122,12 @@ export default function HommeServicesPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {menPacks.map((pack) => (
-              <div
+              <PackCard
                 key={pack.id}
-                className="flex flex-col gap-3 p-6 border"
-                style={{ backgroundColor: "#1E1E21", borderColor: "rgba(201,168,76,0.2)" }}
-              >
-                <span style={{ opacity: 0.5 }}><IconScissors size={18} color="#C9A84C" /></span>
-                <h3
-                  className="text-xl uppercase tracking-wide"
-                  style={{ color: "#F1F1F1", fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)" }}
-                >
-                  {pack.name}
-                </h3>
-                <p className="text-xs opacity-50 flex-1" style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow, sans-serif)", fontWeight: 300 }}>
-                  {pack.contents}
-                </p>
-                <span className="text-base" style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)" }}>
-                  {pack.priceLabel}
-                </span>
-              </div>
+                pack={pack}
+                icon={<IconScissors size={18} color="#C9A84C" />}
+                universe="men"
+              />
             ))}
           </div>
         </div>

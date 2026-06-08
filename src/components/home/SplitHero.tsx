@@ -9,11 +9,19 @@ export default function SplitHero() {
   const [splitPos, setSplitPos] = useState(50);
   const [hovered, setHovered] = useState<"men" | "women" | null>(null);
   const [scrollY, setScrollY] = useState(0);
-  const [mouse, setMouse] = useState({ x: 0, y: 0 }); // -1 à 1 relatif au centre
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || isMobile) return;
 
     const onMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
@@ -23,7 +31,6 @@ export default function SplitHero() {
       const pulled = clamped + (50 - clamped) * 0.35;
       setSplitPos(pulled);
 
-      // Parallaxe souris — valeurs normalisées [-1, 1]
       const nx = (e.clientX / window.innerWidth) * 2 - 1;
       const ny = (e.clientY / window.innerHeight) * 2 - 1;
       setMouse({ x: nx, y: ny });
@@ -44,9 +51,8 @@ export default function SplitHero() {
       container.removeEventListener("mouseleave", onLeave);
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [isMobile]);
 
-  // Décalage parallaxe : scroll vertical + dérive souris
   const parallaxMen = {
     x: mouse.x * -10,
     y: scrollY * 0.35 + mouse.y * -8,
@@ -56,6 +62,133 @@ export default function SplitHero() {
     y: scrollY * 0.35 + mouse.y * -8,
   };
 
+  /* ── MOBILE : deux panneaux empilés ── */
+  if (isMobile) {
+    return (
+      <section className="flex flex-col" style={{ minHeight: "100svh" }}>
+        {/* Panneau Homme */}
+        <Link
+          href="/homme"
+          className="relative flex flex-col justify-end overflow-hidden"
+          style={{ flex: 1, minHeight: "50svh", backgroundColor: "#0C0C0C" }}
+        >
+          <div className="absolute inset-0 pointer-events-none">
+            <Image
+              src="/images/men/men-hero-barber.webp"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0" style={{ backgroundColor: "rgba(12,12,12,0.65)" }} />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(12,12,12,0.9) 0%, transparent 50%)" }} />
+          </div>
+          <div className="relative z-10 flex flex-col gap-3 px-6 pb-8">
+            <Image
+              src="/images/logos/logo-homme1.png"
+              alt="Le Cercle — Univers Homme"
+              width={180}
+              height={90}
+              style={{ objectFit: "contain", opacity: 0.9 }}
+            />
+            <h2
+              className="uppercase leading-none"
+              style={{
+                color: "#F1F1F1",
+                fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
+                fontSize: "clamp(2.5rem, 12vw, 4rem)",
+                letterSpacing: "0.06em",
+              }}
+            >
+              Univers <span style={{ color: "#C9A84C" }}>Homme</span>
+            </h2>
+            <ul className="flex flex-col gap-1.5">
+              {["Coupe & Barbe", "Rituel serviette chaude", "Soin du visage"].map((s) => (
+                <li
+                  key={s}
+                  className="flex items-center gap-2 text-xs tracking-widest uppercase"
+                  style={{ color: "#C0C0C8", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
+                >
+                  <span className="inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: "#C9A84C" }} />
+                  {s}
+                </li>
+              ))}
+            </ul>
+            <div
+              className="btn-primary self-start mt-1"
+              style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "0.75rem", padding: "0.5rem 1.25rem" }}
+            >
+              Entrer
+            </div>
+          </div>
+          {/* Bordure dorée en bas */}
+          <div className="absolute bottom-0 left-0 right-0 h-px" style={{ backgroundColor: "rgba(201,168,76,0.4)" }} />
+        </Link>
+
+        {/* Panneau Femme */}
+        <Link
+          href="/femme"
+          className="relative flex flex-col justify-end overflow-hidden"
+          style={{ flex: 1, minHeight: "50svh", backgroundColor: "#FAF7F2" }}
+        >
+          <div className="absolute inset-0 pointer-events-none">
+            <Image
+              src="/images/women/women-hero-beauty-studio.webp"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0" style={{ backgroundColor: "rgba(250,247,242,0.55)" }} />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(250,247,242,0.92) 0%, transparent 50%)" }} />
+          </div>
+          <div className="relative z-10 flex flex-col items-end gap-3 px-6 pb-8 text-right">
+            <Image
+              src="/images/logos/logo-femme1.png"
+              alt="Le Cercle — Univers Femme"
+              width={180}
+              height={90}
+              style={{ objectFit: "contain", opacity: 0.9 }}
+            />
+            <h2
+              className="leading-none italic"
+              style={{
+                color: "#4A3428",
+                fontFamily: "var(--font-cormorant, Georgia, serif)",
+                fontSize: "clamp(2.5rem, 11vw, 4rem)",
+                fontWeight: 300,
+                letterSpacing: "0.02em",
+              }}
+            >
+              Univers <span style={{ color: "#B89A5A" }}>Femme</span>
+            </h2>
+            <ul className="flex flex-col items-end gap-1.5">
+              {["Manucure & Nail Bar", "Soins visage", "Épilation & Regard"].map((s) => (
+                <li
+                  key={s}
+                  className="flex items-center gap-2 text-xs tracking-widest uppercase"
+                  style={{ color: "#7A6858", fontFamily: "var(--font-jost, sans-serif)" }}
+                >
+                  {s}
+                  <span className="inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: "#B89A5A" }} />
+                </li>
+              ))}
+            </ul>
+            <div
+              className="btn-primary self-end mt-1"
+              style={{ backgroundColor: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)", fontSize: "0.75rem", padding: "0.5rem 1.25rem" }}
+            >
+              Entrer
+            </div>
+          </div>
+        </Link>
+      </section>
+    );
+  }
+
+  /* ── DESKTOP : séparateur dynamique ── */
   return (
     <section
       ref={containerRef}
@@ -65,7 +198,7 @@ export default function SplitHero() {
       {/* ── SIDE HOMME ── */}
       <Link
         href="/homme"
-        className="absolute inset-0 flex flex-col items-start justify-center px-12 md:px-20 overflow-hidden"
+        className="absolute inset-0 flex flex-col items-start justify-center px-20 overflow-hidden"
         style={{
           clipPath: `polygon(0 0, ${splitPos}% 0, ${splitPos}% 100%, 0 100%)`,
           transition: "clip-path 0.05s linear",
@@ -76,7 +209,6 @@ export default function SplitHero() {
         onMouseEnter={() => setHovered("men")}
         onMouseLeave={() => setHovered(null)}
       >
-        {/* Image de fond */}
         <div className="absolute inset-0 pointer-events-none" style={{ overflow: "hidden" }}>
           <Image
             src="/images/men/men-hero-barber.webp"
@@ -91,39 +223,18 @@ export default function SplitHero() {
               willChange: "transform",
             }}
           />
-          {/* Filtre sombre global — lisibilité des textes */}
-          <div
-            className="absolute inset-0"
-            style={{ backgroundColor: "rgba(12,12,12,0.62)" }}
-          />
-          {/* Filtre laiton côté gauche — ancrage de marque */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(105deg, rgba(201,168,76,0.18) 0%, transparent 55%)",
-            }}
-          />
-          {/* Dégradé bas — fondu sol */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(12,12,12,0.85) 0%, transparent 40%)",
-            }}
-          />
-          {/* Grain texture */}
+          <div className="absolute inset-0" style={{ backgroundColor: "rgba(12,12,12,0.62)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(105deg, rgba(201,168,76,0.18) 0%, transparent 55%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(12,12,12,0.85) 0%, transparent 40%)" }} />
           <div
             className="absolute inset-0 opacity-20"
             style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E\")",
+              backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E\")",
               backgroundSize: "200px",
             }}
           />
         </div>
 
-        {/* Content */}
         <div
           className="relative z-10 flex flex-col gap-6 max-w-sm"
           style={{
@@ -138,13 +249,12 @@ export default function SplitHero() {
             height={180}
             style={{ objectFit: "contain", opacity: 0.9 }}
           />
-
           <h2
             className="leading-none uppercase"
             style={{
               color: "#F1F1F1",
               fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-              fontSize: "clamp(4rem, 8vw, 8rem)",
+              fontSize: "clamp(4rem, 7vw, 8rem)",
               letterSpacing: "0.06em",
               lineHeight: 0.88,
               textShadow: "0 2px 24px rgba(0,0,0,0.6)",
@@ -153,45 +263,29 @@ export default function SplitHero() {
             Univers<br />
             <span style={{ color: "#C9A84C" }}>Homme</span>
           </h2>
-
-          <div
-            className="h-px w-10"
-            style={{ backgroundColor: "rgba(201,168,76,0.5)" }}
-          />
-
+          <div className="h-px w-10" style={{ backgroundColor: "rgba(201,168,76,0.5)" }} />
           <ul className="flex flex-col gap-2">
             {["Coupe & Barbe", "Rituel serviette chaude", "Soin du visage"].map((s) => (
               <li
                 key={s}
                 className="text-xs tracking-widest uppercase flex items-center gap-3"
-                style={{
-                  color: "#C0C0C8",
-                  fontFamily: "var(--font-barlow-cond, sans-serif)",
-                }}
+                style={{ color: "#C0C0C8", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
               >
-                <span
-                  className="inline-block w-1 h-1 rounded-full shrink-0"
-                  style={{ backgroundColor: "#C9A84C" }}
-                />
+                <span className="inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: "#C9A84C" }} />
                 {s}
               </li>
             ))}
           </ul>
-
-          <div
-            className="btn-primary self-start mt-2"
-            style={{ fontFamily: "var(--font-barlow-cond, sans-serif)" }}
-          >
+          <div className="btn-primary self-start mt-2" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)" }}>
             Entrer
           </div>
         </div>
 
-        {/* Large decorative letter */}
         <div
           className="absolute right-12 top-1/2 -translate-y-1/2 select-none pointer-events-none"
           style={{
             fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-            fontSize: "clamp(12rem, 22vw, 22rem)",
+            fontSize: "clamp(12rem, 18vw, 22rem)",
             lineHeight: 1,
             color: "#F1F1F1",
             opacity: 0.04,
@@ -205,7 +299,7 @@ export default function SplitHero() {
       {/* ── SIDE FEMME ── */}
       <Link
         href="/femme"
-        className="absolute inset-0 flex flex-col items-end justify-center px-12 md:px-20 overflow-hidden"
+        className="absolute inset-0 flex flex-col items-end justify-center px-20 overflow-hidden"
         style={{
           clipPath: `polygon(${splitPos}% 0, 100% 0, 100% 100%, ${splitPos}% 100%)`,
           transition: "clip-path 0.05s linear",
@@ -216,7 +310,6 @@ export default function SplitHero() {
         onMouseEnter={() => setHovered("women")}
         onMouseLeave={() => setHovered(null)}
       >
-        {/* Image de fond */}
         <div className="absolute inset-0 pointer-events-none">
           <Image
             src="/images/women/women-hero-beauty-studio.webp"
@@ -231,38 +324,12 @@ export default function SplitHero() {
               willChange: "transform",
             }}
           />
-          {/* Filtre crème global — lisibilité + douceur */}
-          <div
-            className="absolute inset-0"
-            style={{ backgroundColor: "rgba(250,247,242,0.55)" }}
-          />
-          {/* Filtre or côté droit */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(255deg, rgba(184,154,90,0.2) 0%, transparent 55%)",
-            }}
-          />
-          {/* Dégradé bas */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(250,247,242,0.9) 0%, transparent 40%)",
-            }}
-          />
-          {/* Assombrissement coin haut-droit — lisibilité logo */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 65% 65% at 100% 0%, rgba(30,18,12,0.82) 0%, rgba(30,18,12,0.45) 45%, transparent 70%)",
-            }}
-          />
+          <div className="absolute inset-0" style={{ backgroundColor: "rgba(250,247,242,0.55)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(255deg, rgba(184,154,90,0.2) 0%, transparent 55%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(250,247,242,0.9) 0%, transparent 40%)" }} />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 65% 65% at 100% 0%, rgba(30,18,12,0.82) 0%, rgba(30,18,12,0.45) 45%, transparent 70%)" }} />
         </div>
 
-        {/* Content */}
         <div
           className="relative z-10 flex flex-col items-end gap-6 max-w-sm text-right"
           style={{
@@ -277,13 +344,12 @@ export default function SplitHero() {
             height={180}
             style={{ objectFit: "contain", opacity: 0.9 }}
           />
-
           <h2
             className="leading-none italic"
             style={{
               color: "#4A3428",
               fontFamily: "var(--font-cormorant, Georgia, serif)",
-              fontSize: "clamp(4rem, 8vw, 7rem)",
+              fontSize: "clamp(4rem, 6.5vw, 7rem)",
               fontWeight: 300,
               letterSpacing: "0.02em",
               lineHeight: 0.9,
@@ -293,48 +359,32 @@ export default function SplitHero() {
             Univers<br />
             <span style={{ color: "#B89A5A" }}>Femme</span>
           </h2>
-
-          <div
-            className="h-px w-10"
-            style={{ backgroundColor: "rgba(184,154,90,0.5)" }}
-          />
-
+          <div className="h-px w-10" style={{ backgroundColor: "rgba(184,154,90,0.5)" }} />
           <ul className="flex flex-col items-end gap-2">
             {["Manucure & Nail Bar", "Soins visage", "Épilation & Regard"].map((s) => (
               <li
                 key={s}
                 className="text-xs tracking-widest uppercase flex items-center gap-3"
-                style={{
-                  color: "#7A6858",
-                  fontFamily: "var(--font-jost, sans-serif)",
-                }}
+                style={{ color: "#7A6858", fontFamily: "var(--font-jost, sans-serif)" }}
               >
                 {s}
-                <span
-                  className="inline-block w-1 h-1 rounded-full shrink-0"
-                  style={{ backgroundColor: "#B89A5A" }}
-                />
+                <span className="inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: "#B89A5A" }} />
               </li>
             ))}
           </ul>
-
           <div
             className="btn-primary self-end mt-2"
-            style={{
-              backgroundColor: "#B89A5A",
-              fontFamily: "var(--font-jost, sans-serif)",
-            }}
+            style={{ backgroundColor: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)" }}
           >
             Entrer
           </div>
         </div>
 
-        {/* Large decorative letter */}
         <div
           className="absolute left-12 top-1/2 -translate-y-1/2 select-none pointer-events-none italic"
           style={{
             fontFamily: "var(--font-cormorant, Georgia, serif)",
-            fontSize: "clamp(12rem, 22vw, 22rem)",
+            fontSize: "clamp(12rem, 18vw, 22rem)",
             lineHeight: 1,
             color: "#4A3428",
             opacity: 0.05,
@@ -349,36 +399,16 @@ export default function SplitHero() {
         className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20"
         style={{ left: `${splitPos}%`, transform: "translateX(-50%)", width: 0 }}
       >
-        {/* Ligne verticale */}
         <div
           className="absolute inset-y-0 w-px"
           style={{
-            background:
-              "linear-gradient(to bottom, transparent 0%, #C9A84C 30%, #B89A5A 70%, transparent 100%)",
+            background: "linear-gradient(to bottom, transparent 0%, #C9A84C 30%, #B89A5A 70%, transparent 100%)",
             opacity: 0.5,
-            transition: "left 0.05s linear",
           }}
         />
-
-        {/* Logo centré sur la ligne */}
-        <div
-          className="relative flex flex-col items-center"
-          style={{ whiteSpace: "nowrap", gap: 0 }}
-        >
-          {/* Demi-cercle haut (ouverture vers le haut) */}
-          <svg
-            width="64"
-            height="32"
-            viewBox="0 0 64 32"
-            fill="none"
-            style={{ display: "block", marginBottom: -1 }}
-          >
-            <path
-              d="M 32 32 A 32 32 0 0 1 0 32"
-              stroke="url(#grad-top)"
-              strokeWidth="1"
-              fill="none"
-            />
+        <div className="relative flex flex-col items-center" style={{ whiteSpace: "nowrap", gap: 0 }}>
+          <svg width="64" height="32" viewBox="0 0 64 32" fill="none" style={{ display: "block", marginBottom: -1 }}>
+            <path d="M 32 32 A 32 32 0 0 1 0 32" stroke="url(#grad-top)" strokeWidth="1" fill="none" />
             <defs>
               <linearGradient id="grad-top" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stopColor="transparent" />
@@ -387,8 +417,6 @@ export default function SplitHero() {
               </linearGradient>
             </defs>
           </svg>
-
-          {/* Cercle + Wordmark */}
           <div
             className="relative flex flex-col items-center justify-center"
             style={{
@@ -400,64 +428,19 @@ export default function SplitHero() {
               boxShadow: "0 0 40px rgba(201,168,76,0.06)",
             }}
           >
-            {/* Inner ring */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 8,
-                borderRadius: "50%",
-                border: "1px solid rgba(201,168,76,0.12)",
-              }}
-            />
+            <div style={{ position: "absolute", inset: 8, borderRadius: "50%", border: "1px solid rgba(201,168,76,0.12)" }} />
             <div className="flex flex-col items-center gap-1 relative z-10">
-              <span
-                style={{
-                  fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-                  fontSize: "1rem",
-                  letterSpacing: "0.35em",
-                  color: "#F1F1F1",
-                  lineHeight: 1,
-                }}
-              >
+              <span style={{ fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)", fontSize: "1rem", letterSpacing: "0.35em", color: "#F1F1F1", lineHeight: 1 }}>
                 LE CERCLE
               </span>
-              <div
-                style={{
-                  width: 24,
-                  height: 1,
-                  background: "linear-gradient(to right, #C9A84C, #B89A5A)",
-                  opacity: 0.6,
-                }}
-              />
-              <span
-                style={{
-                  fontFamily: "var(--font-jost, sans-serif)",
-                  fontSize: "0.4rem",
-                  letterSpacing: "0.25em",
-                  color: "#C9A84C",
-                  textTransform: "uppercase",
-                  opacity: 0.65,
-                }}
-              >
+              <div style={{ width: 24, height: 1, background: "linear-gradient(to right, #C9A84C, #B89A5A)", opacity: 0.6 }} />
+              <span style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "0.4rem", letterSpacing: "0.25em", color: "#C9A84C", textTransform: "uppercase", opacity: 0.65 }}>
                 Maison de soins
               </span>
             </div>
           </div>
-
-          {/* Demi-cercle bas (ouverture vers le bas) */}
-          <svg
-            width="64"
-            height="32"
-            viewBox="0 0 64 32"
-            fill="none"
-            style={{ display: "block", marginTop: -1 }}
-          >
-            <path
-              d="M 0 0 A 32 32 0 0 0 64 0"
-              stroke="url(#grad-bot)"
-              strokeWidth="1"
-              fill="none"
-            />
+          <svg width="64" height="32" viewBox="0 0 64 32" fill="none" style={{ display: "block", marginTop: -1 }}>
+            <path d="M 0 0 A 32 32 0 0 0 64 0" stroke="url(#grad-bot)" strokeWidth="1" fill="none" />
             <defs>
               <linearGradient id="grad-bot" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stopColor="#B89A5A" stopOpacity="0.2" />
@@ -468,14 +451,6 @@ export default function SplitHero() {
           </svg>
         </div>
       </div>
-
-      {/* Mobile — stack vertical */}
-      <style>{`
-        @media (max-width: 767px) {
-          .split-hero-men { clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%) !important; }
-          .split-hero-women { clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%) !important; }
-        }
-      `}</style>
     </section>
   );
 }

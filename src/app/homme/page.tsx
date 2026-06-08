@@ -221,7 +221,7 @@ export default function HommePage() {
                   className="flex gap-4 pt-4 border-t items-start"
                   style={{ borderColor: "rgba(201,168,76,0.15)" }}
                 >
-                  <img src={item.icon} aria-hidden width={18} height={18} style={{ marginTop: 2, opacity: 0.6, filter: "invert(72%) sepia(40%) saturate(400%) hue-rotate(5deg)" }} />
+                  <Image src={item.icon} alt="" aria-hidden width={18} height={18} unoptimized style={{ marginTop: 2, opacity: 0.6, filter: "invert(72%) sepia(40%) saturate(400%) hue-rotate(5deg)", flexShrink: 0 }} />
                   <div className="flex flex-col gap-1">
                   <span
                     className="text-sm font-medium tracking-wide uppercase"

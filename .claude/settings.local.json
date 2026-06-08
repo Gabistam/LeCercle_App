@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(npx tsc *)"
+    ]
+  }
+}
