@@ -2,293 +2,150 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-export default function SplitHeroDesktop() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [splitPos, setSplitPos] = useState(50);
-  const [hovered, setHovered] = useState<"men" | "women" | null>(null);
-  const [scrollY, setScrollY] = useState(0);
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+type Props = { freshaUrl: string };
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const onMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const pct = (x / rect.width) * 100;
-      const clamped = Math.max(28, Math.min(72, pct));
-      const pulled = clamped + (50 - clamped) * 0.35;
-      setSplitPos(pulled);
-
-      const nx = (e.clientX / window.innerWidth) * 2 - 1;
-      const ny = (e.clientY / window.innerHeight) * 2 - 1;
-      setMouse({ x: nx, y: ny });
-    };
-
-    const onLeave = () => {
-      setSplitPos(50);
-      setMouse({ x: 0, y: 0 });
-    };
-
-    const onScroll = () => setScrollY(window.scrollY);
-
-    container.addEventListener("mousemove", onMove);
-    container.addEventListener("mouseleave", onLeave);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      container.removeEventListener("mousemove", onMove);
-      container.removeEventListener("mouseleave", onLeave);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-
-  const parallaxMen = {
-    x: mouse.x * -10,
-    y: scrollY * 0.35 + mouse.y * -8,
-  };
-  const parallaxWomen = {
-    x: mouse.x * 10,
-    y: scrollY * 0.35 + mouse.y * -8,
-  };
+export default function SplitHeroDesktop({ freshaUrl }: Props) {
+  const [hoveredMen, setHoveredMen] = useState(false);
+  const [hoveredWomen, setHoveredWomen] = useState(false);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative flex min-h-screen overflow-hidden"
-      style={{ backgroundColor: "#0C0C0C" }}
-    >
-      {/* ── SIDE HOMME ── */}
-      <Link
-        href="/homme"
-        className="absolute inset-0 flex flex-col items-start justify-center px-20 overflow-hidden"
-        style={{
-          clipPath: `polygon(0 0, ${splitPos}% 0, ${splitPos}% 100%, 0 100%)`,
-          transition: "clip-path 0.05s linear",
-          backgroundColor: "#0C0C0C",
-          willChange: "clip-path",
-          opacity: hovered === "women" ? 0.9 : 1,
-        }}
-        onMouseEnter={() => setHovered("men")}
-        onMouseLeave={() => setHovered(null)}
-      >
-        <div className="absolute inset-0 pointer-events-none" style={{ overflow: "hidden" }}>
-          <Image
-            src="/images/men/men-hero-barber.webp"
-            alt=""
-            fill
-            priority
-            sizes="60vw"
-            className="object-cover object-center"
-            style={{
-              transform: `scale(1.12) translate(${parallaxMen.x}px, ${parallaxMen.y}px)`,
-              transition: "transform 0.1s linear",
-              willChange: "transform",
-            }}
-          />
-          <div className="absolute inset-0" style={{ backgroundColor: "rgba(12,12,12,0.62)" }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(105deg, rgba(201,168,76,0.18) 0%, transparent 55%)" }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(12,12,12,0.85) 0%, transparent 40%)" }} />
-          <div
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E\")",
-              backgroundSize: "200px",
-            }}
-          />
-        </div>
+    <section style={{ height: "100vh", display: "flex", overflow: "hidden", position: "relative", backgroundColor: "#0D0D0D" }}>
 
-        <div
-          className="relative z-10 flex flex-col gap-6 max-w-sm"
+      {/* ── PANNEAU HOMME ── */}
+      <div
+        style={{ position: "relative", flex: 1, overflow: "hidden", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredMen(true)}
+        onMouseLeave={() => setHoveredMen(false)}
+      >
+        <Image
+          src="/images/men/men-barber-chair.webp"
+          alt=""
+          fill
+          priority
+          sizes="50vw"
+          className="object-cover object-center"
           style={{
-            opacity: hovered === "women" ? 0.4 : 1,
-            transition: "opacity 0.5s ease",
+            transform: hoveredMen ? "scale(1.05)" : "scale(1)",
+            filter: hoveredMen ? "brightness(0.5)" : "brightness(1)",
+            transition: "transform 1s cubic-bezier(.16,1,.3,1), filter 0.6s ease",
           }}
-        >
+        />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(8,6,4,0.97) 0%, rgba(8,6,4,0.72) 38%, rgba(8,6,4,0.25) 62%, transparent 100%)", zIndex: 2 }} />
+
+        {/* Logo haut gauche */}
+        <div style={{ position: "absolute", top: 36, left: 48, zIndex: 10 }}>
           <Image
             src="/images/logos/logo-homme1.png"
             alt="Le Cercle — Espace Homme"
-            width={360}
-            height={180}
+            width={220}
+            height={110}
             style={{ objectFit: "contain", opacity: 0.9 }}
           />
-          <h2
-            className="leading-none uppercase"
-            style={{
-              color: "#F1F1F1",
-              fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-              fontSize: "clamp(4rem, 7vw, 8rem)",
-              letterSpacing: "0.06em",
-              lineHeight: 0.88,
-              textShadow: "0 2px 24px rgba(0,0,0,0.6)",
-            }}
-          >
-            Espace<br />
-            <span style={{ color: "#C9A84C" }}>Homme</span>
+        </div>
+
+        {/* Contenu bas */}
+        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "52px 52px 56px", zIndex: 5, display: "flex", flexDirection: "column", gap: 20 }}>
+          <p style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8px", fontWeight: 300, letterSpacing: "6px", textTransform: "uppercase", color: "#C4A35A", marginBottom: 0, display: "flex", alignItems: "center", gap: 12 }}>
+            <span style={{ width: 18, height: 1, background: "#C4A35A", opacity: 0.65, display: "inline-block", flexShrink: 0 }} />
+            L&apos;espace homme
+          </p>
+          <h2 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: "clamp(2.75rem, 4.5vw, 4rem)", lineHeight: 0.88, letterSpacing: "-1.5px", color: "#F1F0EC" }}>
+            Coupe · Barbe<br />
+            <em style={{ fontStyle: "italic", color: "#C4A35A", display: "block" }}>&amp; Soins</em>
           </h2>
-          <div className="h-px w-10" style={{ backgroundColor: "rgba(201,168,76,0.5)" }} />
-          <ul className="flex flex-col gap-2">
-            {["Coupe & Barbe", "Rituel serviette chaude", "Soin du visage"].map((s) => (
-              <li
-                key={s}
-                className="text-xs tracking-widest uppercase flex items-center gap-3"
-                style={{ color: "#C0C0C8", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
-              >
-                <span className="inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: "#C9A84C" }} />
+          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 9, marginBottom: 0 }}>
+            {["Coupe ciseaux & tondeuse", "Barbe & finition lame", "Soin du visage", "Forfaits dès 35 €"].map((s) => (
+              <li key={s} style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontSize: "17px", fontWeight: 300, color: "rgba(241,240,236,0.65)", display: "flex", alignItems: "center", gap: 12 }}>
+                <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#C4A35A", flexShrink: 0, opacity: 0.75, display: "inline-block" }} />
                 {s}
               </li>
             ))}
           </ul>
-          <div className="btn-primary self-start mt-2" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)" }}>
-            Entrer
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <a href={freshaUrl} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#0D0D0D", background: "#C4A35A", padding: "14px 28px", textDecoration: "none", display: "inline-block", transition: "background .3s" }}>
+              Réserver · Espace Homme
+            </a>
+            <Link href="/homme" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#C4A35A", border: "1px solid rgba(196,163,90,0.4)", padding: "14px 24px", textDecoration: "none", display: "inline-block", transition: "all .3s" }}>
+              Voir les rituels →
+            </Link>
           </div>
+          <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "9px", fontWeight: 300, letterSpacing: "1.5px", color: "rgba(241,240,236,0.32)", fontStyle: "italic" }}>
+            Sans carte bancaire · Annulation gratuite 24h avant
+          </p>
         </div>
-      </Link>
+      </div>
 
-      {/* ── SIDE FEMME ── */}
-      <Link
-        href="/femme"
-        className="absolute inset-0 flex flex-col items-end justify-center px-20 overflow-hidden"
-        style={{
-          clipPath: `polygon(${splitPos}% 0, 100% 0, 100% 100%, ${splitPos}% 100%)`,
-          transition: "clip-path 0.05s linear",
-          backgroundColor: "#FAF7F2",
-          willChange: "clip-path",
-          opacity: hovered === "men" ? 0.9 : 1,
-        }}
-        onMouseEnter={() => setHovered("women")}
-        onMouseLeave={() => setHovered(null)}
+      {/* ── LIGNE OR CENTRALE ── */}
+      <div style={{ position: "relative", width: 3, background: "linear-gradient(to bottom, transparent 3%, #C4A35A 14%, #C4A35A 86%, transparent 97%)", zIndex: 20, flexShrink: 0 }} />
+
+      {/* ── PANNEAU FEMME ── */}
+      <div
+        style={{ position: "relative", flex: 1, overflow: "hidden", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredWomen(true)}
+        onMouseLeave={() => setHoveredWomen(false)}
       >
-        <div className="absolute inset-0 pointer-events-none">
-          <Image
-            src="/images/women/women-hero-beauty-studio.webp"
-            alt=""
-            fill
-            priority
-            sizes="60vw"
-            className="object-cover object-center"
-            style={{
-              transform: `scale(1.12) translate(${parallaxWomen.x}px, ${parallaxWomen.y}px)`,
-              transition: "transform 0.1s linear",
-              willChange: "transform",
-            }}
-          />
-          <div className="absolute inset-0" style={{ backgroundColor: "rgba(250,247,242,0.55)" }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(255deg, rgba(184,154,90,0.2) 0%, transparent 55%)" }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(250,247,242,0.9) 0%, transparent 40%)" }} />
-          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 70% at 100% 0%, rgba(10,8,5,0.92) 0%, rgba(20,14,8,0.72) 35%, rgba(30,18,12,0.35) 60%, transparent 80%)" }} />
-        </div>
-
-        <div
-          className="relative z-10 flex flex-col items-end gap-6 max-w-sm text-right"
+        <Image
+          src="/images/women/women-nail-bar.avif"
+          alt=""
+          fill
+          priority
+          sizes="50vw"
+          className="object-cover object-center"
           style={{
-            opacity: hovered === "men" ? 0.4 : 1,
-            transition: "opacity 0.5s ease",
+            transform: hoveredWomen ? "scale(1.05)" : "scale(1)",
+            filter: hoveredWomen ? "brightness(0.5)" : "brightness(1)",
+            transition: "transform 1s cubic-bezier(.16,1,.3,1), filter 0.6s ease",
           }}
-        >
+        />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(8,6,4,0.97) 0%, rgba(8,6,4,0.65) 42%, rgba(8,6,4,0.18) 65%, transparent 100%)", zIndex: 2 }} />
+
+        {/* Logo haut droite */}
+        <div style={{ position: "absolute", top: 36, right: 48, zIndex: 10 }}>
+          {/* Halo sombre centré sur le logo */}
+          <div style={{ position: "absolute", inset: "-60px", background: "radial-gradient(circle at 50% 50%, rgba(8,6,4,0.38) 0%, rgba(8,6,4,0.15) 40%, rgba(8,6,4,0.04) 62%, transparent 70%)", pointerEvents: "none" }} />
           <Image
             src="/images/logos/logo-femme1.png"
             alt="Le Cercle — Espace Femme"
-            width={360}
-            height={180}
-            style={{ objectFit: "contain", opacity: 0.9 }}
+            width={220}
+            height={110}
+            style={{ objectFit: "contain", opacity: 0.95, position: "relative", zIndex: 1 }}
           />
-          <h2
-            className="leading-none italic"
-            style={{
-              color: "#4A3428",
-              fontFamily: "var(--font-cormorant, Georgia, serif)",
-              fontSize: "clamp(4rem, 6.5vw, 7rem)",
-              fontWeight: 300,
-              letterSpacing: "0.02em",
-              lineHeight: 0.9,
-              textShadow: "0 2px 20px rgba(250,247,242,0.4)",
-            }}
-          >
-            Espace<br />
-            <span style={{ color: "#B89A5A" }}>Femme</span>
+        </div>
+
+        {/* Contenu bas */}
+        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "52px 52px 56px", zIndex: 5, display: "flex", flexDirection: "column", gap: 20 }}>
+          <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "8px", fontWeight: 300, letterSpacing: "6px", textTransform: "uppercase", color: "#C4A35A", display: "flex", alignItems: "center", gap: 12 }}>
+            <span style={{ width: 18, height: 1, background: "#C4A35A", opacity: 0.65, display: "inline-block", flexShrink: 0 }} />
+            L&apos;espace femme
+          </p>
+          <h2 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: "clamp(2.75rem, 4.5vw, 4rem)", lineHeight: 0.88, letterSpacing: "-1.5px", color: "#F1F0EC" }}>
+            Manucure · Ongles<br />
+            <em style={{ fontStyle: "italic", color: "#C4A35A", display: "block" }}>&amp; Beauté</em>
           </h2>
-          <div className="h-px w-10" style={{ backgroundColor: "rgba(184,154,90,0.5)" }} />
-          <ul className="flex flex-col items-end gap-2">
-            {["Manucure & Nail Bar", "Soins visage", "Épilation & Regard"].map((s) => (
-              <li
-                key={s}
-                className="text-xs tracking-widest uppercase flex items-center gap-3"
-                style={{ color: "#7A6858", fontFamily: "var(--font-jost, sans-serif)" }}
-              >
+          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 9 }}>
+            {["Ongles & faux ongles gel", "Soins visage & corps", "Brushing & coupe", "Épilation & massages"].map((s) => (
+              <li key={s} style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontSize: "17px", fontWeight: 300, color: "rgba(241,240,236,0.65)", display: "flex", alignItems: "center", gap: 12 }}>
+                <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#C4A35A", flexShrink: 0, opacity: 0.75, display: "inline-block" }} />
                 {s}
-                <span className="inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: "#B89A5A" }} />
               </li>
             ))}
           </ul>
-          <div
-            className="btn-primary self-end mt-2"
-            style={{ backgroundColor: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)" }}
-          >
-            Entrer
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <a href={freshaUrl} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#0D0D0D", background: "#C4A35A", padding: "14px 28px", textDecoration: "none", display: "inline-block", transition: "background .3s" }}>
+              Réserver · Espace Femme
+            </a>
+            <Link href="/femme" style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#C4A35A", border: "1px solid rgba(196,163,90,0.4)", padding: "14px 24px", textDecoration: "none", display: "inline-block", transition: "all .3s" }}>
+              Voir les soins →
+            </Link>
           </div>
-        </div>
-      </Link>
-
-      {/* ── CENTRE — Logo + Ligne ── */}
-      <div
-        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20"
-        style={{ left: `${splitPos}%`, transform: "translateX(-50%)", width: 0 }}
-      >
-        <div
-          className="absolute inset-y-0 w-px"
-          style={{
-            background: "linear-gradient(to bottom, transparent 0%, #C9A84C 30%, #B89A5A 70%, transparent 100%)",
-            opacity: 0.5,
-          }}
-        />
-        <div className="relative flex flex-col items-center" style={{ whiteSpace: "nowrap", gap: 0 }}>
-          <svg width="64" height="32" viewBox="0 0 64 32" fill="none" style={{ display: "block", marginBottom: -1 }}>
-            <path d="M 32 32 A 32 32 0 0 1 0 32" stroke="url(#grad-top)" strokeWidth="1" fill="none" />
-            <defs>
-              <linearGradient id="grad-top" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="transparent" />
-                <stop offset="50%" stopColor="#C9A84C" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#C9A84C" stopOpacity="0.2" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <div
-            className="relative flex flex-col items-center justify-center"
-            style={{
-              width: 130,
-              height: 130,
-              borderRadius: "50%",
-              border: "1px solid rgba(201,168,76,0.35)",
-              backgroundColor: "#0C0C0C",
-              boxShadow: "0 0 40px rgba(201,168,76,0.06)",
-            }}
-          >
-            <div style={{ position: "absolute", inset: 8, borderRadius: "50%", border: "1px solid rgba(201,168,76,0.12)" }} />
-            <div className="flex flex-col items-center gap-1 relative z-10">
-              <span style={{ fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)", fontSize: "1rem", letterSpacing: "0.35em", color: "#F1F1F1", lineHeight: 1 }}>
-                LE CERCLE
-              </span>
-              <div style={{ width: 24, height: 1, background: "linear-gradient(to right, #C9A84C, #B89A5A)", opacity: 0.6 }} />
-              <span style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "0.4rem", letterSpacing: "0.25em", color: "#C9A84C", textTransform: "uppercase", opacity: 0.65 }}>
-                Maison de soins
-              </span>
-            </div>
-          </div>
-          <svg width="64" height="32" viewBox="0 0 64 32" fill="none" style={{ display: "block", marginTop: -1 }}>
-            <path d="M 0 0 A 32 32 0 0 0 64 0" stroke="url(#grad-bot)" strokeWidth="1" fill="none" />
-            <defs>
-              <linearGradient id="grad-bot" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#B89A5A" stopOpacity="0.2" />
-                <stop offset="50%" stopColor="#B89A5A" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="transparent" />
-              </linearGradient>
-            </defs>
-          </svg>
+          <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "9px", fontWeight: 300, letterSpacing: "1.5px", color: "rgba(241,240,236,0.32)", fontStyle: "italic" }}>
+            Sans carte bancaire · Annulation gratuite 24h avant
+          </p>
         </div>
       </div>
+
     </section>
   );
 }
