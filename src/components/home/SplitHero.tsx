@@ -1,173 +1,117 @@
 import Link from "next/link";
 import Image from "next/image";
-import dynamic from "next/dynamic";
+import SplitHeroDesktopLoader from "./SplitHeroDesktopLoader";
 
-const SplitHeroDesktop = dynamic(() => import("./SplitHeroDesktop"), { ssr: false });
+const FRESHA_URL = "https://www.fresha.com/book-now/news-smart-huroubs6/all-offer?id=2899050&share=true&pId=2790182";
 
 export default function SplitHero() {
   return (
     <>
-      {/* ── MOBILE : deux blocs empilés, pur SSR, pas d'interactivité ── */}
-      <section className="flex flex-col md:hidden" style={{ height: "100svh" }}>
+      {/* ── MOBILE : deux panneaux empilés, pur SSR ── */}
+      <section className="flex flex-col md:hidden" style={{ minHeight: "100svh" }}>
 
         {/* Panneau Homme */}
-        <Link
-          href="/homme"
-          className="relative overflow-hidden"
-          style={{ flex: "0 0 50%", backgroundColor: "#0C0C0C" }}
-        >
-          <div className="absolute inset-0 pointer-events-none">
+        <div className="relative overflow-hidden flex flex-col" style={{ flex: "1" }}>
+          <Image
+            src="/images/men/men-barber-chair.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,13,13,0.97) 0%, rgba(13,13,13,0.55) 45%, rgba(13,13,13,0.1) 100%)" }} />
+
+          {/* Logo haut droite */}
+          <div className="relative z-10 flex justify-end p-5">
             <Image
-              src="/images/men/men-hero-barber.webp"
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
+              src="/images/logos/LogosSimples/logoSimpleHomme-LeCercle1.png"
+              alt="Le Cercle Homme"
+              width={80}
+              height={40}
+              style={{ objectFit: "contain", filter: "invert(1)", opacity: 0.85 }}
             />
-            <div className="absolute inset-0" style={{ backgroundColor: "rgba(12,12,12,0.60)" }} />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(105deg, rgba(201,168,76,0.14) 0%, transparent 55%)" }} />
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 h-px z-10" style={{ backgroundColor: "rgba(201,168,76,0.5)" }} />
-
-          <div className="relative z-10 h-full grid grid-cols-2 px-6 gap-4" style={{ alignItems: "center" }}>
-            <div className="flex flex-col gap-3">
-              <p
-                className="text-xs tracking-widest uppercase"
-                style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)", opacity: 0.7, letterSpacing: "0.25em" }}
-              >
-                Barber · Grooming
-              </p>
-              <div className="flex flex-col gap-1">
-                <div className="w-6 h-px" style={{ backgroundColor: "rgba(201,168,76,0.6)" }} />
-                <h2
-                  className="uppercase leading-none"
-                  style={{
-                    color: "#F1F1F1",
-                    fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-                    fontSize: "clamp(2.2rem, 10vw, 3.5rem)",
-                    letterSpacing: "0.06em",
-                    lineHeight: 0.9,
-                    textShadow: "0 2px 20px rgba(0,0,0,0.5)",
-                  }}
-                >
-                  Espace<br />
-                  <span style={{ color: "#C9A84C" }}>Homme</span>
-                </h2>
-              </div>
-              <ul className="flex flex-col gap-1">
-                {["Coupe & Barbe", "Rituel serviette", "Soin du visage"].map((s) => (
-                  <li
-                    key={s}
-                    className="text-xs tracking-wide uppercase"
-                    style={{ color: "rgba(192,192,200,0.65)", fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "0.6rem" }}
-                  >
-                    {s}
-                  </li>
-                ))}
-              </ul>
+          {/* Contenu bas */}
+          <div className="relative z-10 mt-auto p-7 flex flex-col gap-4">
+            <p className="flex items-center gap-3 uppercase" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8px", fontWeight: 300, letterSpacing: "6px", color: "#C4A35A" }}>
+              <span style={{ width: 18, height: 1, backgroundColor: "#C4A35A", opacity: 0.65, display: "inline-block", flexShrink: 0 }} />
+              L&apos;espace homme
+            </p>
+            <h2 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: "clamp(2.5rem, 9vw, 3.5rem)", lineHeight: 0.88, letterSpacing: "-1.5px", color: "#F1F0EC" }}>
+              Coupe · Barbe<br />
+              <em style={{ fontStyle: "italic", color: "#C4A35A" }}>&amp; Soins</em>
+            </h2>
+            <div className="flex items-center gap-3 flex-wrap mt-1">
+              <a href={FRESHA_URL} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#111", backgroundColor: "#C4A35A", padding: "12px 22px", textDecoration: "none", display: "inline-block" }}>
+                Réserver maintenant
+              </a>
+              <Link href="/homme" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#C4A35A", border: "1px solid rgba(196,163,90,0.4)", padding: "12px 18px", textDecoration: "none", display: "inline-block" }}>
+                Découvrir →
+              </Link>
             </div>
-
-            <div className="flex flex-col items-end justify-center gap-4">
-              <Image
-                src="/images/logos/LogosSimples/logoSimpleHomme-LeCercle1.png"
-                alt="Le Cercle Homme"
-                width={90}
-                height={45}
-                style={{ objectFit: "contain", filter: "invert(1)", opacity: 0.85 }}
-              />
-              <div
-                className="btn-primary"
-                style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "0.65rem", padding: "0.5rem 1.2rem", whiteSpace: "nowrap" }}
-              >
-                Entrer
-              </div>
-            </div>
+            <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "9px", fontWeight: 300, letterSpacing: "1.5px", color: "rgba(241,240,236,0.32)", fontStyle: "italic" }}>
+              À partir de 35 € · 45 min de sérénité
+            </p>
           </div>
-        </Link>
+        </div>
+
+        {/* Séparateur or */}
+        <div style={{ height: 2, background: "linear-gradient(to right, transparent, #C4A35A 20%, #C4A35A 80%, transparent)", opacity: 0.7 }} />
 
         {/* Panneau Femme */}
-        <Link
-          href="/femme"
-          className="relative overflow-hidden"
-          style={{ flex: "0 0 50%", backgroundColor: "#FAF7F2" }}
-        >
-          <div className="absolute inset-0 pointer-events-none">
+        <div className="relative overflow-hidden flex flex-col" style={{ flex: "1" }}>
+          <Image
+            src="/images/women/women-nail-bar.avif"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,13,13,0.97) 0%, rgba(13,13,13,0.55) 45%, rgba(13,13,13,0.1) 100%)" }} />
+
+          {/* Logo haut droite */}
+          <div className="relative z-10 flex justify-end p-5">
             <Image
-              src="/images/women/women-hero-beauty-studio.webp"
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
+              src="/images/logos/LogosSimples/logoSimpleFemme-LeCercle.webp"
+              alt="Le Cercle Femme"
+              width={80}
+              height={40}
+              style={{ objectFit: "contain", opacity: 0.88 }}
             />
-            <div className="absolute inset-0" style={{ backgroundColor: "rgba(8,5,2,0.55)" }} />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(255deg, rgba(184,154,90,0.12) 0%, transparent 55%)" }} />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(250,247,242,0.45) 0%, transparent 25%, transparent 75%, rgba(250,247,242,0.45) 100%)" }} />
           </div>
 
-          <div className="relative z-10 h-full grid grid-cols-2 px-6 gap-4" style={{ alignItems: "center" }}>
-            <div className="flex flex-col items-start justify-center gap-4">
-              <Image
-                src="/images/logos/LogosSimples/logoSimpleFemme-LeCercle.webp"
-                alt="Le Cercle Femme"
-                width={90}
-                height={45}
-                style={{ objectFit: "contain", opacity: 0.92 }}
-              />
-              <div
-                className="btn-primary"
-                style={{ backgroundColor: "#B89A5A", fontFamily: "var(--font-jost, sans-serif)", fontSize: "0.65rem", padding: "0.5rem 1.2rem", whiteSpace: "nowrap" }}
-              >
-                Entrer
-              </div>
+          {/* Contenu bas */}
+          <div className="relative z-10 mt-auto p-7 flex flex-col gap-4">
+            <p className="flex items-center gap-3 uppercase" style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "8px", fontWeight: 300, letterSpacing: "6px", color: "#C4A35A" }}>
+              <span style={{ width: 18, height: 1, backgroundColor: "#C4A35A", opacity: 0.65, display: "inline-block", flexShrink: 0 }} />
+              L&apos;espace femme
+            </p>
+            <h2 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: "clamp(2.5rem, 9vw, 3.5rem)", lineHeight: 0.88, letterSpacing: "-1.5px", color: "#F1F0EC" }}>
+              Manucure · Ongles<br />
+              <em style={{ fontStyle: "italic", color: "#C4A35A" }}>&amp; Beauté</em>
+            </h2>
+            <div className="flex items-center gap-3 flex-wrap mt-1">
+              <a href={FRESHA_URL} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#111", backgroundColor: "#C4A35A", padding: "12px 22px", textDecoration: "none", display: "inline-block" }}>
+                Réserver maintenant
+              </a>
+              <Link href="/femme" style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#C4A35A", border: "1px solid rgba(196,163,90,0.4)", padding: "12px 18px", textDecoration: "none", display: "inline-block" }}>
+                Découvrir →
+              </Link>
             </div>
-
-            <div className="flex flex-col items-end gap-3 text-right">
-              <p
-                className="text-xs tracking-widest uppercase"
-                style={{ color: "#D4B87A", fontFamily: "var(--font-jost, sans-serif)", opacity: 0.8, letterSpacing: "0.2em" }}
-              >
-                Nail Bar · Soins
-              </p>
-              <div className="flex flex-col items-end gap-1">
-                <div className="w-6 h-px" style={{ backgroundColor: "rgba(212,184,122,0.6)" }} />
-                <h2
-                  className="leading-none italic"
-                  style={{
-                    color: "#F5EFE6",
-                    fontFamily: "var(--font-cormorant, Georgia, serif)",
-                    fontSize: "clamp(2.2rem, 10vw, 3.5rem)",
-                    fontWeight: 300,
-                    letterSpacing: "0.02em",
-                    lineHeight: 0.9,
-                  }}
-                >
-                  Espace<br />
-                  <span style={{ color: "#D4B87A" }}>Femme</span>
-                </h2>
-              </div>
-              <ul className="flex flex-col items-end gap-1">
-                {["Manucure & Nail", "Soins visage", "Épilation"].map((s) => (
-                  <li
-                    key={s}
-                    className="text-xs tracking-wide uppercase"
-                    style={{ color: "rgba(235,220,200,0.75)", fontFamily: "var(--font-jost, sans-serif)", fontSize: "0.6rem" }}
-                  >
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "9px", fontWeight: 300, letterSpacing: "1.5px", color: "rgba(241,240,236,0.32)", fontStyle: "italic" }}>
+              À partir de 40 € · 50 min d&apos;évasion
+            </p>
           </div>
-        </Link>
+        </div>
 
       </section>
 
-      {/* ── DESKTOP : chargé dynamiquement, JS non bloquant ── */}
+      {/* ── DESKTOP : chargé dynamiquement ── */}
       <div className="hidden md:block">
-        <SplitHeroDesktop />
+        <SplitHeroDesktopLoader freshaUrl={FRESHA_URL} />
       </div>
     </>
   );

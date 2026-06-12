@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SplitHero from "@/components/home/SplitHero";
 import ManifesteTicker from "@/components/home/ManifesteTicker";
-import PiliersMiroir from "@/components/home/PiliersMiroir";
-import RecoveryBande from "@/components/home/RecoveryBande";
-import SalonsPreview from "@/components/sections/SalonsPreview";
+import StorySection from "@/components/home/StorySection";
+import ManifesteSection from "@/components/home/ManifesteSection";
+import ConceptPanneaux from "@/components/home/ConceptPanneaux";
+import AvisClients from "@/components/home/AvisClients";
+import CtaFinal from "@/components/home/CtaFinal";
 
 export const metadata: Metadata = {
   title: "Le Cercle — Maison de soins premium | Casa Padel",
@@ -15,12 +18,15 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div data-universe="mixed">
+      <SiteHeader />
       <main>
         <SplitHero />
         <ManifesteTicker />
-        <PiliersMiroir />
-        <RecoveryBande />
-        <SalonsPreview universe="mixed" />
+        <StorySection />
+        <ManifesteSection />
+        <ConceptPanneaux />
+        <AvisClients />
+        <CtaFinal />
       </main>
       <SiteFooter />
     </div>
