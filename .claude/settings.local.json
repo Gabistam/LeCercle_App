@@ -3,7 +3,8 @@
     "allow": [
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\" -Force)",
       "Bash(Select-Object Name, PSIsContainer)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(dir \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\")"
     ]
   }
 }
