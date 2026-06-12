@@ -205,8 +205,8 @@ export default async function SalonPage({
               <ServiceCard key={svc.id} service={svc} index={i} universe="men" />
             ))}
           </div>
-          <Link href="/homme/services" className="btn-ghost self-start text-xs">
-            Voir toutes les prestations Homme →
+          <Link href="/homme" className="btn-ghost self-start text-xs">
+            Voir l&apos;Espace Homme →
           </Link>
         </div>
       </section>
@@ -234,11 +234,11 @@ export default async function SalonPage({
             ))}
           </div>
           <Link
-            href="/femme/services"
+            href="/femme"
             className="btn-ghost self-start text-xs"
             style={{ color: "#A89080" }}
           >
-            Voir tous les soins Femme →
+            Voir l&apos;Espace Femme →
           </Link>
         </div>
       </section>
