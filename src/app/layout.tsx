@@ -7,7 +7,9 @@ import {
   Barlow,
 } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/home/CustomCursor";
+import dynamic from "next/dynamic";
+
+const CustomCursor = dynamic(() => import("@/components/home/CustomCursor"), { ssr: false });
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
