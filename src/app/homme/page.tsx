@@ -1,261 +1,325 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import SalonsPreview from "@/components/sections/SalonsPreview";
-import { services } from "@/data/services";
 
 export const metadata: Metadata = {
-  title: "Espace Homme — Barber & Grooming Premium",
+  title: "Espace Homme — Coiffeur Barbier Premium",
   description:
-    "Coupe, barbe, rituel complet et soins capillaires dans un cadre club privé au sein des centres Casa Padel.",
+    "L'endroit où un homme prend soin de lui sans s'expliquer. Coupe, barbe, soin visage dans un cadre noir, laiton et cuir au sein des centres Casa Padel.",
 };
 
-const featuredServices = services.filter(
-  (s) => s.audience === "men" && s.isFeatured
-);
+const FRESHA_URL = "https://www.fresha.com/book-now/news-smart-huroubs6/all-offer?id=2899050&share=true&pId=2790182";
+
+const forfaits = [
+  {
+    tag: "Signature",
+    title: "Signature Tondeuse",
+    services: ["Coupe tondeuse", "Barbe"],
+    prix: "35 €",
+    duree: "≈ 40 min",
+    featured: false,
+  },
+  {
+    tag: "Signature",
+    title: "Signature Ciseaux",
+    services: ["Coupe ciseaux", "Barbe"],
+    prix: "40 €",
+    duree: "≈ 45 min",
+    featured: false,
+  },
+  {
+    tag: "Premium",
+    title: "Premium",
+    badge: "Meilleure Offre",
+    services: ["Coupe", "Barbe", "Serviette chaude", "Soin visage"],
+    prix: "45 €",
+    duree: "≈ 1h",
+    featured: true,
+  },
+];
+
+const tarifs = [
+  {
+    categorie: "Coupes",
+    icon: "✂",
+    items: [
+      { nom: "Coupe Ciseaux", desc: "Raffinée et soignée", prix: "29 €" },
+      { nom: "Coupe Tondeuse", desc: "Look net et précis", prix: "24 €" },
+      { nom: "Rasage de Crâne", desc: "Finition lisse au rasoir", prix: "15 €" },
+      { nom: "Coupe Enfant — 10 ans", desc: "Expertise douce", prix: "15 €" },
+    ],
+  },
+  {
+    categorie: "Barbes & Soins",
+    icon: "◈",
+    items: [
+      { nom: "Barbe Tondeuse", desc: "Contours nets et finition soignée", prix: "15 €" },
+      { nom: "Barbe + Serviette + Finition Lame", desc: "Expérience barbier authentique", prix: "20 €" },
+      { nom: "Soin du Visage", desc: "Nettoyage, hydratation, éclat", prix: "15 €" },
+    ],
+  },
+];
+
+const ambianceDetails = [
+  { icon: "☕", label: "Coffee Bar", desc: "Expresso ou eau infusée servis à votre arrivée" },
+  { icon: "◈", label: "Produits", desc: "Sélection grooming premium disponible" },
+  { icon: "✦", label: "Sans RDV", desc: "À la volée ou sur rendez-vous Fresha" },
+  { icon: "◯", label: "Intimité", desc: "Un espace confidentiel, loin de l'agitation" },
+];
 
 export default function HommePage() {
   return (
     <>
-      {/* Hero */}
-      <section
-        className="relative flex flex-col justify-end min-h-screen px-6 pb-16 pt-32 overflow-hidden"
-        style={{ backgroundColor: "#0C0C0C" }}
-      >
-        {/* Image de fond */}
+      {/* ── HERO ── */}
+      <section className="relative flex flex-col justify-end min-h-screen px-6 pb-16 pt-32 overflow-hidden" style={{ backgroundColor: "#0D0D0D" }}>
         <div className="absolute inset-0 pointer-events-none">
-          <Image
-            src="/images/men/men-hero-barber.webp"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0" style={{ backgroundColor: "rgba(12,12,12,0.68)" }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #0C0C0C 0%, transparent 50%)" }} />
-          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.12) 0%, transparent 55%)" }} />
+          <Image src="/images/men/men-hero-barber.webp" alt="" fill priority sizes="100vw" className="object-cover object-center" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,6,4,0.97) 0%, rgba(8,6,4,0.72) 38%, rgba(8,6,4,0.25) 62%, transparent 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 20% 80%, rgba(196,163,90,0.1) 0%, transparent 55%)" }} />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div className="flex flex-col gap-6 max-w-3xl">
-            <p
-              className="text-xs tracking-widest uppercase"
-              style={{
-                color: "#C9A84C",
-                fontFamily: "var(--font-barlow-cond, sans-serif)",
-                opacity: 0.7,
-                letterSpacing: "0.3em",
-              }}
-            >
-              Le Cercle — Espace Homme
+          <div className="flex flex-col gap-6 max-w-2xl">
+            {/* Logo */}
+            <Image src="/images/logos/logo-homme1.png" alt="Le Cercle — Espace Homme" width={200} height={100} style={{ objectFit: "contain", opacity: 0.9 }} />
+
+            <p style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 8, fontWeight: 300, letterSpacing: "6px", textTransform: "uppercase", color: "#C4A35A", display: "flex", alignItems: "center", gap: 12 }}>
+              <span style={{ width: 18, height: 1, backgroundColor: "#C4A35A", opacity: 0.65, display: "inline-block" }} />
+              Espace Homme · Coiffeur-Barbier
             </p>
-            <h1
-              className="text-7xl md:text-[10rem] uppercase leading-none"
-              style={{
-                color: "#F1F1F1",
-                fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-                letterSpacing: "0.05em",
-                lineHeight: "0.9",
-              }}
-            >
-              Club
-              <br />
-              <span style={{ color: "#C9A84C" }}>Privé</span>
-              <br />
-              Urbain
+
+            <h1 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: "clamp(3rem, 7vw, 5.5rem)", lineHeight: 0.88, letterSpacing: "-2px", color: "#F1F0EC" }}>
+              Club Privé<br />
+              <em style={{ fontStyle: "italic", color: "#C4A35A" }}>Urbain.</em>
             </h1>
-            <p
-              className="text-base leading-relaxed opacity-50 max-w-md"
-              style={{
-                color: "#F1F1F1",
-                fontFamily: "var(--font-barlow, sans-serif)",
-                fontWeight: 300,
-              }}
-            >
-              Coupe, barbe et rituels signature dans un cadre noir, laiton et cuir. L&apos;expérience barber premium au sein des centres Casa Padel.
+
+            <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: 16, fontWeight: 300, color: "rgba(241,240,236,0.55)", lineHeight: 1.7, maxWidth: 460 }}>
+              L&apos;endroit où un homme prend soin de lui sans s&apos;expliquer. Coupe, barbe, soin visage — dans un cadre noir, laiton et cuir. Précision à chaque geste.
             </p>
-            <div className="flex items-center gap-4 mt-4">
-              <Link href="/homme/reservation" className="btn-primary">
-                Réserver
-              </Link>
-              <Link href="/homme/services" className="btn-outline">
-                Nos prestations
-              </Link>
+
+            <div className="flex items-center gap-4 flex-wrap mt-2">
+              <a href={FRESHA_URL} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#0D0D0D", background: "#C4A35A", padding: "14px 28px", textDecoration: "none", display: "inline-block" }}>
+                Réserver mon rituel
+              </a>
+              <a href="#rituels" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#C4A35A", border: "1px solid rgba(196,163,90,0.4)", padding: "14px 24px", textDecoration: "none", display: "inline-block" }}>
+                Découvrir les rituels
+              </a>
+            </div>
+
+            <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: 9, fontWeight: 300, letterSpacing: "1.5px", color: "rgba(241,240,236,0.3)", fontStyle: "italic" }}>
+              Sans carte bancaire · Annulation gratuite 24h avant
+            </p>
+
+            {/* Rating */}
+            <div className="flex items-center gap-3 mt-2">
+              <span style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontSize: 28, fontWeight: 300, color: "#C4A35A", lineHeight: 1 }}>4.9</span>
+              <div>
+                <div style={{ color: "#C4A35A", fontSize: 11, letterSpacing: 3 }}>★★★★★</div>
+                <div style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 8, fontWeight: 300, letterSpacing: 2, textTransform: "uppercase", color: "rgba(241,240,236,0.35)", marginTop: 2 }}>+340 avis vérifiés · Fresha</div>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Decorative number */}
-        <div
-          className="absolute right-8 top-1/2 -translate-y-1/2 hidden xl:block opacity-[0.03] select-none"
-          style={{
-            color: "#F1F1F1",
-            fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-            fontSize: "22rem",
-            lineHeight: 1,
-          }}
-        >
-          H
         </div>
       </section>
 
-      {/* Services phares */}
-      <section
-        className="py-24 px-6"
-        style={{ backgroundColor: "#171719" }}
-      >
-        <div className="max-w-7xl mx-auto flex flex-col gap-12">
-          <div className="flex flex-col gap-4">
-            <p
-              className="section-overline"
-              style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
-            >
-              Prestations
-            </p>
-            <div className="flex flex-col gap-2">
-              <div className="divider-accent" />
-              <h2
-                className="text-5xl md:text-6xl uppercase leading-tight"
-                style={{
-                  color: "#F1F1F1",
-                  fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-                  letterSpacing: "0.06em",
-                }}
-              >
-                Le rituel
-              </h2>
-            </div>
+      {/* ── FORFAITS SIGNATURE ── */}
+      <section id="rituels" className="px-6 py-20 md:px-16 md:py-28" style={{ backgroundColor: "#111111" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+
+          {/* Séparateur titre */}
+          <div className="flex items-center gap-5 mb-12">
+            <div style={{ height: 1, flex: 1, background: "linear-gradient(to right, #C4A35A, transparent)", opacity: 0.3 }} />
+            <span style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 9, letterSpacing: 5, textTransform: "uppercase", color: "#C4A35A", opacity: 0.6 }}>◆ FORFAITS SIGNATURE</span>
+            <div style={{ height: 1, flex: 1, background: "linear-gradient(to left, #C4A35A, transparent)", opacity: 0.3 }} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px" style={{ backgroundColor: "rgba(201,168,76,0.15)" }}>
-            {featuredServices.map((svc, i) => (
-              <div
-                key={svc.id}
-                className="flex flex-col gap-3 p-8"
-                style={{ backgroundColor: "#171719" }}
-              >
-                <span
-                  className="text-xs tracking-widest opacity-30"
-                  style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3
-                  className="text-2xl uppercase tracking-wide"
-                  style={{
-                    color: "#F1F1F1",
-                    fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-                  }}
-                >
-                  {svc.title}
+          <div className="flex flex-col gap-3 mb-10">
+            <h2 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1, letterSpacing: "-1px", color: "#F1F0EC" }}>
+              Le meilleur de notre savoir-faire.
+            </h2>
+            <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: 15, fontWeight: 300, color: "rgba(241,240,236,0.5)", lineHeight: 1.7, maxWidth: 520 }}>
+              Trois formules pour l&apos;homme exigeant. Du rituel essentiel à l&apos;expérience complète — chaque forfait est une heure qui change tout.
+            </p>
+            <a href="#tarifs" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "3px", textTransform: "uppercase", color: "#C4A35A", textDecoration: "none", marginTop: 4 }}>
+              Voir tous les tarifs →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: "rgba(196,163,90,0.12)", border: "1px solid rgba(196,163,90,0.12)" }}>
+            {forfaits.map((f) => (
+              <div key={f.title} style={{ background: f.featured ? "linear-gradient(135deg, rgba(196,163,90,0.08) 0%, #111111 60%)" : "#111111", padding: "40px 32px", borderTop: f.featured ? "2px solid #C4A35A" : "none", position: "relative" }}>
+                {f.badge && (
+                  <div style={{ position: "absolute", top: 20, right: 20, fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 7, fontWeight: 300, letterSpacing: 2, textTransform: "uppercase", color: "#0D0D0D", backgroundColor: "#C4A35A", padding: "3px 8px" }}>
+                    {f.badge}
+                  </div>
+                )}
+                <div style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 8, fontWeight: 300, letterSpacing: 4, textTransform: "uppercase", color: "#C4A35A", opacity: 0.6, marginBottom: 14 }}>
+                  {f.tag}
+                </div>
+                <h3 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: 28, color: "#F1F0EC", lineHeight: 1.1, marginBottom: 20, letterSpacing: "-0.5px" }}>
+                  {f.title}
                 </h3>
-                <p
-                  className="text-sm leading-relaxed opacity-50 flex-1"
-                  style={{
-                    color: "#F1F1F1",
-                    fontFamily: "var(--font-barlow, sans-serif)",
-                    fontWeight: 300,
-                  }}
-                >
-                  {svc.shortDescription}
-                </p>
-                <div className="flex items-center justify-between mt-2 pt-4 border-t" style={{ borderColor: "rgba(201,168,76,0.15)" }}>
-                  <span
-                    className="text-xs opacity-40"
-                    style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
-                  >
-                    {svc.durationLabel}
-                  </span>
-                  <span
-                    className="text-base font-light"
-                    style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
-                  >
-                    {svc.priceLabel}
-                  </span>
+                <ul className="flex flex-col gap-2 mb-8">
+                  {f.services.map((s) => (
+                    <li key={s} className="flex items-center gap-3" style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: 14, fontWeight: 300, color: "rgba(241,240,236,0.6)" }}>
+                      <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#C4A35A", flexShrink: 0, opacity: 0.7, display: "inline-block" }} />
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex items-end justify-between pt-5" style={{ borderTop: "1px solid rgba(196,163,90,0.12)" }}>
+                  <span style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontSize: 32, fontWeight: 300, color: "#C4A35A", lineHeight: 1 }}>{f.prix}</span>
+                  <span style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 9, fontWeight: 300, letterSpacing: 2, color: "rgba(241,240,236,0.3)", textTransform: "uppercase" }}>{f.duree}</span>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="flex">
-            <Link href="/homme/services" className="btn-outline">
-              Toutes les prestations
+          <div className="flex justify-center mt-8">
+            <a href={FRESHA_URL} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#0D0D0D", background: "#C4A35A", padding: "14px 32px", textDecoration: "none", display: "inline-block" }}>
+              Réserver mon rituel →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TARIFS À LA CARTE ── */}
+      <section id="tarifs" className="px-6 py-20 md:px-16 md:py-28" style={{ backgroundColor: "#0D0D0D" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+
+          <div className="flex items-center gap-5 mb-12">
+            <div style={{ height: 1, flex: 1, background: "linear-gradient(to right, #C4A35A, transparent)", opacity: 0.3 }} />
+            <span style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 9, letterSpacing: 5, textTransform: "uppercase", color: "#C4A35A", opacity: 0.6 }}>◆ À LA CARTE</span>
+            <div style={{ height: 1, flex: 1, background: "linear-gradient(to left, #C4A35A, transparent)", opacity: 0.3 }} />
+          </div>
+
+          <h2 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1, letterSpacing: "-1px", color: "#F1F0EC", marginBottom: 40 }}>
+            Chaque geste. Son prix juste.
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {tarifs.map((cat) => (
+              <div key={cat.categorie} style={{ border: "1px solid rgba(196,163,90,0.12)", padding: "36px 32px" }}>
+                <div className="flex items-center gap-3 mb-6">
+                  <span style={{ fontSize: 16, color: "#C4A35A" }}>{cat.icon}</span>
+                  <h3 style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 11, fontWeight: 500, letterSpacing: 4, textTransform: "uppercase", color: "#C4A35A" }}>
+                    {cat.categorie}
+                  </h3>
+                </div>
+                <div className="flex flex-col gap-0" style={{ borderTop: "1px solid rgba(196,163,90,0.1)" }}>
+                  {cat.items.map((item) => (
+                    <div key={item.nom} className="flex items-center justify-between py-4" style={{ borderBottom: "1px solid rgba(196,163,90,0.08)" }}>
+                      <div className="flex flex-col gap-1">
+                        <span style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: 14, fontWeight: 400, color: "#F1F0EC" }}>{item.nom}</span>
+                        <span style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: 12, fontWeight: 300, color: "#666" }}>{item.desc}</span>
+                      </div>
+                      <span style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontSize: 22, fontWeight: 300, color: "#C4A35A", flexShrink: 0, marginLeft: 16 }}>{item.prix}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── AMBIANCE ── */}
+      <section id="salon" className="px-6 py-20 md:px-16 md:py-28" style={{ backgroundColor: "#111111" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center" style={{ maxWidth: 1100, margin: "0 auto" }}>
+
+          {/* Texte */}
+          <div className="flex flex-col gap-6">
+            <div className="flex items-center gap-5">
+              <div style={{ height: 1, width: 20, background: "#C4A35A", opacity: 0.6 }} />
+              <span style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 8, fontWeight: 300, letterSpacing: 5, textTransform: "uppercase", color: "#C4A35A", opacity: 0.6 }}>Le cadre</span>
+            </div>
+
+            <h2 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1, letterSpacing: "-1px", color: "#F1F0EC" }}>
+              Un endroit qui ne s&apos;excuse pas.
+            </h2>
+
+            <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: 15, fontWeight: 300, color: "rgba(241,240,236,0.5)", lineHeight: 1.7 }}>
+              Cuir noir, métal brossé, éclairage spot. Un expresso vous attend à votre arrivée. L&apos;écran diffuse en fond, les voix sont basses.
+            </p>
+
+            <blockquote style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontStyle: "italic", fontSize: 20, color: "#C4A35A", lineHeight: 1.4, borderLeft: "2px solid #C4A35A", paddingLeft: 20 }}>
+              &ldquo;Ici, une heure suffit pour repartir différemment.&rdquo;
+            </blockquote>
+
+            <div className="flex flex-col gap-0" style={{ borderTop: "1px solid rgba(196,163,90,0.1)", marginTop: 8 }}>
+              {ambianceDetails.map((d) => (
+                <div key={d.label} className="flex items-start gap-4 py-4" style={{ borderBottom: "1px solid rgba(196,163,90,0.08)" }}>
+                  <span style={{ fontSize: 14, color: "#C4A35A", flexShrink: 0, marginTop: 1 }}>{d.icon}</span>
+                  <div>
+                    <div style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 11, fontWeight: 500, letterSpacing: 3, textTransform: "uppercase", color: "#C4A35A", marginBottom: 3 }}>{d.label}</div>
+                    <div style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: 13, fontWeight: 300, color: "#666" }}>{d.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Image */}
+          <div className="relative overflow-hidden" style={{ minHeight: 420 }}>
+            <Image src="/images/men/men-barber-chair.webp" alt="Le Cercle — Espace Homme" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" style={{ filter: "brightness(0.85)" }} />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #111111 0%, transparent 30%)" }} />
+            <div className="absolute top-0 left-0 w-12 h-px" style={{ backgroundColor: "#C4A35A", opacity: 0.5 }} />
+            <div className="absolute top-0 left-0 w-px h-12" style={{ backgroundColor: "#C4A35A", opacity: 0.5 }} />
+            <div className="absolute bottom-0 right-0 w-12 h-px" style={{ backgroundColor: "#C4A35A", opacity: 0.3 }} />
+            <div className="absolute bottom-0 right-0 w-px h-12" style={{ backgroundColor: "#C4A35A", opacity: 0.3 }} />
+            <div className="absolute bottom-4 left-4" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 9, fontWeight: 300, letterSpacing: 3, textTransform: "uppercase", color: "rgba(196,163,90,0.6)" }}>
+              Le Cercle · Coiffeur-Barbier · Casa Padel
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CROSS-SELLING ── */}
+      <section className="px-6 py-16 md:px-16" style={{ backgroundColor: "#0D0D0D", borderTop: "1px solid rgba(196,163,90,0.1)", borderBottom: "1px solid rgba(196,163,90,0.1)" }}>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6" style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div className="flex flex-col gap-3">
+            <span style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 8, fontWeight: 300, letterSpacing: 5, textTransform: "uppercase", color: "#C4A35A", opacity: 0.6 }}>Espace Femme</span>
+            <h3 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: "clamp(1.5rem, 3vw, 2.2rem)", lineHeight: 1.1, color: "#F1F0EC", letterSpacing: "-0.5px" }}>
+              Elle aussi mérite son rituel.
+            </h3>
+            <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: 14, fontWeight: 300, color: "rgba(241,240,236,0.45)", maxWidth: 480 }}>
+              Le Cercle Beauty Studio accueille votre partenaire — ongles, soins visage, brushing, massages dans un cadre travertin et lumière douce.
+            </p>
+          </div>
+          <Link href="/femme" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#C4A35A", border: "1px solid rgba(196,163,90,0.35)", padding: "14px 28px", textDecoration: "none", display: "inline-block", flexShrink: 0 }}>
+            Découvrir l&apos;Espace Femme →
+          </Link>
+        </div>
+      </section>
+
+      {/* ── CTA FINAL ── */}
+      <section className="px-6 py-24 md:px-16 md:py-36" style={{ backgroundColor: "#111111", textAlign: "center" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div style={{ height: 1, width: 24, background: "#C4A35A", opacity: 0.5 }} />
+            <span style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 8, fontWeight: 300, letterSpacing: 5, textTransform: "uppercase", color: "#C4A35A", opacity: 0.6 }}>Votre prochain rendez-vous</span>
+            <div style={{ height: 1, width: 24, background: "#C4A35A", opacity: 0.5 }} />
+          </div>
+          <h2 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontWeight: 300, fontSize: "clamp(2.5rem, 5vw, 3.5rem)", lineHeight: 0.9, letterSpacing: "-1.5px", color: "#F1F0EC", marginBottom: 20 }}>
+            Réservez.<br />
+            <em style={{ fontStyle: "italic", color: "#C4A35A" }}>C&apos;est tout.</em>
+          </h2>
+          <p style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontStyle: "italic", fontSize: 18, color: "rgba(241,240,236,0.4)", lineHeight: 1.6, marginBottom: 40 }}>
+            Sur rendez-vous ou à la volée — dans nos trois adresses de Région Parisienne.
+          </p>
+          <div className="flex items-center justify-center gap-4 flex-wrap mb-4">
+            <a href={FRESHA_URL} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#0D0D0D", background: "#C4A35A", padding: "16px 36px", textDecoration: "none", display: "inline-block" }}>
+              Réserver mon rituel →
+            </a>
+            <Link href="/salons" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#C4A35A", border: "1px solid rgba(196,163,90,0.35)", padding: "16px 28px", textDecoration: "none", display: "inline-block" }}>
+              Nos adresses
             </Link>
           </div>
+          <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: 9, fontWeight: 300, letterSpacing: 2, color: "#666", fontStyle: "italic" }}>
+            Sans carte bancaire · Annulation gratuite 24h avant
+          </p>
         </div>
       </section>
-
-      {/* Experience */}
-      <section
-        className="py-24 px-6"
-        style={{ backgroundColor: "#0C0C0C" }}
-      >
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div className="flex flex-col gap-6">
-            <p
-              className="section-overline"
-              style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
-            >
-              L&apos;expérience
-            </p>
-            <h2
-              className="text-5xl md:text-6xl uppercase leading-tight"
-              style={{
-                color: "#F1F1F1",
-                fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)",
-                letterSpacing: "0.06em",
-              }}
-            >
-              Le salon
-            </h2>
-            <ul className="flex flex-col gap-4 mt-2">
-              {[
-                { label: "Fauteuils barber", desc: "Cuir noir, métal brossé, esprit new-yorkais.", icon: "/icons/icon-barber-chair.svg" },
-                { label: "Coffee bar", desc: "Expresso ou eau infusée servis à chaque visite.", icon: "/icons/icon-clock.svg" },
-                { label: "Coin TV", desc: "Ambiance club avec écran intégré.", icon: "/icons/icon-razor.svg" },
-                { label: "Produits", desc: "Sélection de produits grooming disponibles à l'achat.", icon: "/icons/icon-scissors.svg" },
-              ].map((item) => (
-                <li
-                  key={item.label}
-                  className="flex flex-col gap-1 pt-4 border-t"
-                  style={{ borderColor: "rgba(201,168,76,0.15)" }}
-                >
-                  <span
-                    className="text-sm font-medium tracking-wide uppercase"
-                    style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
-                  >
-                    {item.label}
-                  </span>
-                  <span
-                    className="text-xs opacity-50"
-                    style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow, sans-serif)", fontWeight: 300 }}
-                  >
-                    {item.desc}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="min-h-[400px] relative overflow-hidden">
-            <Image
-              src="/images/men/men-barber-chair.webp"
-              alt="Fauteuil barber Le Cercle"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #0C0C0C 0%, transparent 30%)" }} />
-            <div className="absolute top-0 left-0 w-12 h-px" style={{ backgroundColor: "#C9A84C", opacity: 0.5 }} />
-            <div className="absolute top-0 left-0 w-px h-12" style={{ backgroundColor: "#C9A84C", opacity: 0.5 }} />
-            <div className="absolute bottom-0 right-0 w-12 h-px" style={{ backgroundColor: "#C9A84C", opacity: 0.3 }} />
-            <div className="absolute bottom-0 right-0 w-px h-12" style={{ backgroundColor: "#C9A84C", opacity: 0.3 }} />
-          </div>
-        </div>
-      </section>
-
-      <SalonsPreview universe="men" />
     </>
   );
 }
