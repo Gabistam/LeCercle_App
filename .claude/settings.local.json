@@ -14,7 +14,8 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\\\\src\\\\app\\\\homme\\\\services\")",
-      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\\\\src\\\\app\\\\femme\\\\services\")"
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\\\\src\\\\app\\\\femme\\\\services\")",
+      "Bash(npm run *)"
     ]
   }
 }
