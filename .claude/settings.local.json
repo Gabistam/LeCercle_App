@@ -4,7 +4,17 @@
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\" -Force)",
       "Bash(Select-Object Name, PSIsContainer)",
       "Bash(npx tsc *)",
-      "Bash(dir \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\")"
+      "Bash(dir \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\")",
+      "Bash(git stash *)",
+      "Bash(git push *)",
+      "Bash(git checkout *)",
+      "Bash(git merge V2 --no-ff -m ' *)",
+      "Bash(Get-Content -Path \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\\\\LeCercle_V2\\\\espaces-homme.html\")",
+      "Bash(Select-String -Pattern \"section|Forfaits|Rituels|Tarifs|Ambiance|Cross|prix|durée|href\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\\\\src\\\\app\\\\homme\\\\services\")",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\\\\src\\\\app\\\\femme\\\\services\")"
     ]
   }
 }
