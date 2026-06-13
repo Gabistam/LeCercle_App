@@ -58,20 +58,23 @@ export default function AvisClients() {
         <div>
           <div style={{ fontSize: 8, fontWeight: 300, letterSpacing: 5, textTransform: "uppercase", color: "#C4A35A", marginBottom: 20, display: "flex", alignItems: "center", gap: 14, fontFamily: "var(--font-barlow-cond, sans-serif)" }}>
             <span style={{ width: 20, height: 1, background: "#C4A35A", opacity: 0.6, display: "inline-block" }} />
-            Vérifié par nos clients
+            Ce qu&apos;ils disent
           </div>
           <h2 style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontSize: "clamp(36px, 4.5vw, 56px)", fontWeight: 300, lineHeight: 1, letterSpacing: "-1px", color: "#F1F0EC" }}>
-            4.97/5 étoiles
+            Ils sont<br /><em style={{ fontStyle: "italic", color: "#C4A35A" }}>revenus.</em>
           </h2>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontSize: 72, fontWeight: 300, color: "#C4A35A", lineHeight: 1 }}>4.97</div>
+          <div style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontSize: 72, fontWeight: 300, color: "#C4A35A", lineHeight: 1 }}>4.9</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             <div style={{ color: "#C4A35A", fontSize: 18, letterSpacing: 3 }}>★★★★★</div>
-            <div style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 9, fontWeight: 300, letterSpacing: 3, textTransform: "uppercase", color: "#666" }}>47 avis</div>
-            <div style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 8, fontWeight: 300, letterSpacing: 2, textTransform: "uppercase", color: "rgba(196,163,90,0.5)" }}>Sur Fitcare</div>
+            <div style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 9, fontWeight: 300, letterSpacing: 3, textTransform: "uppercase", color: "#666" }}>+340 avis vérifiés</div>
+            <div style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 8, fontWeight: 300, letterSpacing: 2, textTransform: "uppercase", color: "rgba(196,163,90,0.5)" }}>Via Fresha · Région Parisienne</div>
           </div>
         </div>
+        <a href="https://www.fresha.com/fr/a/fitcare-cormeilles-en-parisis-cormeilles-en-parisis-cormeilles-en-parisis-1-boulevard-du-parisis-f2hofeu8/booking?menu=true" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#C4A35A", border: "1px solid rgba(196,163,90,0.3)", padding: "14px 22px", textDecoration: "none", display: "inline-block", flexShrink: 0 }}>
+          Voir tous les avis →
+        </a>
       </div>
 
       {/* Grille avis */}

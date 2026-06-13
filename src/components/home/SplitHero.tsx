@@ -31,7 +31,7 @@ export default function SplitHero() {
               alt="Le Cercle Homme"
               width={80}
               height={40}
-              style={{ objectFit: "contain", filter: "invert(1)", opacity: 0.85 }}
+              style={{ objectFit: "contain", filter: "invert(1)", opacity: 0.85, transform: "translateY(10%)" }}
             />
           </div>
 
@@ -73,17 +73,6 @@ export default function SplitHero() {
             className="object-cover object-center"
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,13,13,0.97) 0%, rgba(13,13,13,0.55) 45%, rgba(13,13,13,0.1) 100%)" }} />
-
-          {/* Logo haut droite */}
-          <div className="relative z-10 flex justify-end p-5">
-            <Image
-              src="/images/logos/LogosSimples/logoSimpleFemme-LeCercle.webp"
-              alt="Le Cercle Femme"
-              width={80}
-              height={40}
-              style={{ objectFit: "contain", opacity: 0.88 }}
-            />
-          </div>
 
           {/* Contenu bas */}
           <div className="relative z-10 mt-auto p-7 flex flex-col gap-4">

@@ -5,7 +5,6 @@ import SplitHero from "@/components/home/SplitHero";
 import ManifesteTicker from "@/components/home/ManifesteTicker";
 import StorySection from "@/components/home/StorySection";
 import ManifesteSection from "@/components/home/ManifesteSection";
-import ConceptPanneaux from "@/components/home/ConceptPanneaux";
 import AvisClients from "@/components/home/AvisClients";
 import CtaFinal from "@/components/home/CtaFinal";
 
@@ -24,7 +23,6 @@ export default function HomePage() {
         <ManifesteTicker />
         <StorySection />
         <ManifesteSection />
-        <ConceptPanneaux />
         <AvisClients />
         <CtaFinal />
       </main>

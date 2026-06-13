@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const SplitHeroDesktop = dynamic(() => import("./SplitHeroDesktop"), { ssr: false });
+import SplitHeroDesktop from "./SplitHeroDesktop";
 
 export default function SplitHeroDesktopLoader({ freshaUrl }: { freshaUrl: string }) {
   return <SplitHeroDesktop freshaUrl={freshaUrl} />;
