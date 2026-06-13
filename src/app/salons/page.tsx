@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import SiteHeader from "@/components/layout/SiteHeader";
+import SiteFooter from "@/components/layout/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Nos Salons — Le Cercle | Région Parisienne",
@@ -75,7 +77,9 @@ const bandItems = [
 
 export default function SalonsPage() {
   return (
-    <>
+    <div data-universe="mixed">
+      <SiteHeader />
+      <main>
       {/* ── HERO ── */}
       <section
         className="relative flex flex-col justify-end min-h-screen px-6 pb-16 pt-32 overflow-hidden md:px-16 md:pb-24"
@@ -481,6 +485,8 @@ export default function SalonsPage() {
           </p>
         </div>
       </section>
-    </>
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

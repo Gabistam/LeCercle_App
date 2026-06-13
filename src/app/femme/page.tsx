@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import ParallaxHeroImage from "@/components/ui/ParallaxHeroImage";
 
 export const metadata: Metadata = {
   title: "Espace Femme — Beauty Studio & Nail Bar Premium",
@@ -99,9 +100,17 @@ export default function FemmePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative flex flex-col justify-end min-h-screen px-6 pb-16 pt-32 overflow-hidden" style={{ backgroundColor: "#0D0D0D" }}>
+      <section
+        className="relative flex flex-col justify-end min-h-screen px-6 pb-16 pt-32"
+        style={{
+          backgroundColor: "#0D0D0D",
+          backgroundImage: "url('/images/women/women-hero-beauty-studio.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
         <div className="absolute inset-0 pointer-events-none">
-          <Image src="/images/women/women-hero-beauty-studio.webp" alt="" fill priority sizes="100vw" className="object-cover object-center" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,6,4,0.97) 0%, rgba(8,6,4,0.72) 38%, rgba(8,6,4,0.25) 62%, transparent 100%)" }} />
           <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 80% 20%, rgba(196,163,90,0.1) 0%, transparent 55%)" }} />
         </div>
@@ -241,9 +250,15 @@ export default function FemmePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center" style={{ maxWidth: 1100, margin: "0 auto" }}>
 
           {/* Image */}
-          <div className="relative overflow-hidden" style={{ minHeight: 420 }}>
-            <Image src="/images/women/women-nail-bar.avif" alt="Le Cercle — Beauty Studio" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" style={{ filter: "brightness(0.85)" }} />
+          <div className="relative" style={{
+            minHeight: 420,
+            backgroundImage: "url('/images/women/women-nail-bar.avif')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}>
             <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #111111 0%, transparent 30%)" }} />
+            <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.15)" }} />
             <div className="absolute top-0 left-0 w-12 h-px" style={{ backgroundColor: "#C4A35A", opacity: 0.5 }} />
             <div className="absolute top-0 left-0 w-px h-12" style={{ backgroundColor: "#C4A35A", opacity: 0.5 }} />
             <div className="absolute bottom-0 right-0 w-12 h-px" style={{ backgroundColor: "#C4A35A", opacity: 0.3 }} />

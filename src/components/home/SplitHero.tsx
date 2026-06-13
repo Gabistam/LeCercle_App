@@ -11,7 +11,7 @@ export default function SplitHero() {
       <section className="flex flex-col md:hidden" style={{ minHeight: "100svh" }}>
 
         {/* Panneau Homme */}
-        <div className="relative overflow-hidden flex flex-col" style={{ flex: "1", minHeight: "50svh" }}>
+        <Link href="/homme" className="relative overflow-hidden flex flex-col" style={{ flex: "1", minHeight: "50svh", textDecoration: "none" }}>
           <Image
             src="/images/men/men-barber-chair.webp"
             alt="Le Cercle — Espace Homme"
@@ -57,13 +57,13 @@ export default function SplitHero() {
               À partir de 35 € · 45 min de sérénité
             </p>
           </div>
-        </div>
+        </Link>
 
         {/* Séparateur or */}
         <div style={{ height: 2, background: "linear-gradient(to right, transparent, #C4A35A 20%, #C4A35A 80%, transparent)", opacity: 0.7 }} />
 
         {/* Panneau Femme */}
-        <div className="relative overflow-hidden flex flex-col" style={{ flex: "1", minHeight: "50svh" }}>
+        <Link href="/femme" className="relative overflow-hidden flex flex-col" style={{ flex: "1", minHeight: "50svh", textDecoration: "none" }}>
           <Image
             src="/images/women/women-nail-bar.avif"
             alt="Le Cercle — Espace Femme"
@@ -96,7 +96,7 @@ export default function SplitHero() {
               À partir de 40 € · 50 min d&apos;évasion
             </p>
           </div>
-        </div>
+        </Link>
 
       </section>
 

@@ -15,10 +15,11 @@ export default function SiteHeader() {
   const isWomen = pathname.startsWith("/femme");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const threshold = isWomen ? 10 : 60;
+    const onScroll = () => setScrolled(window.scrollY > threshold);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isWomen]);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -27,20 +28,20 @@ export default function SiteHeader() {
   const navLinks = isMen
     ? [
         { href: "/homme", label: "Pour Lui" },
-        { href: "/homme/salons", label: "Salons" },
+        { href: "/salons", label: "Salons" },
         { href: "/homme/reservation", label: "Réserver" },
       ]
     : isWomen
       ? [
           { href: "/femme", label: "Pour Elle" },
-          { href: "/femme/salons", label: "Salons" },
+          { href: "/salons", label: "Salons" },
           { href: "/femme/reservation", label: "Réserver" },
         ]
       : [
           { href: "/homme", label: "Homme" },
           { href: "/femme", label: "Femme" },
           { href: "/salons", label: "Salons" },
-          { href: "/a-propos", label: "À propos" },
+          { href: "/#notre-histoire", label: "À propos" },
         ];
 
   const reserveHref = isMen
@@ -53,12 +54,23 @@ export default function SiteHeader() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        backgroundColor: scrolled
-          ? "var(--uni-bg)"
-          : "transparent",
+        backgroundColor: scrolled ? "var(--uni-bg)" : "transparent",
         borderBottom: scrolled ? "1px solid var(--uni-border)" : "none",
       }}
     >
+      {/* Gradient femme avant scroll */}
+      {!scrolled && isWomen && (
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "20vh",
+          background: "linear-gradient(to bottom, rgba(8,6,4,0.65) 0%, rgba(8,6,4,0.25) 50%, transparent 100%)",
+          pointerEvents: "none",
+          zIndex: -1,
+        }} />
+      )}
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
         {/* Logo */}
         <Link href="/" className="shrink-0 flex items-center">

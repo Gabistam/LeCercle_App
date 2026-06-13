@@ -4,7 +4,7 @@ export default function StorySection() {
   return (
     <>
       {/* ── Section intro ── */}
-      <section className="px-6 py-24 md:px-16 md:py-28 text-center" style={{ backgroundColor: "#0D0D0D", position: "relative", overflow: "hidden" }}>
+      <section id="notre-histoire" className="px-6 py-24 md:px-16 md:py-28 text-center" style={{ backgroundColor: "#0D0D0D", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(196,163,90,0.06) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", zIndex: 2, maxWidth: 720, margin: "0 auto" }}>
           <p style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8px", fontWeight: 300, letterSpacing: "6px", textTransform: "uppercase", color: "#C4A35A", marginBottom: 28, display: "flex", alignItems: "center", justifyContent: "center", gap: 14 }}>
