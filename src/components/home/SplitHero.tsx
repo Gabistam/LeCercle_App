@@ -11,15 +11,16 @@ export default function SplitHero() {
       <section className="flex flex-col md:hidden" style={{ minHeight: "100svh" }}>
 
         {/* Panneau Homme */}
-        <div className="relative overflow-hidden flex flex-col" style={{ flex: "1" }}>
+        <div className="relative overflow-hidden flex flex-col" style={{ flex: "1", minHeight: "50svh" }}>
           <Image
             src="/images/men/men-barber-chair.webp"
-            alt=""
+            alt="Le Cercle — Espace Homme"
             fill
             priority
             sizes="100vw"
             className="object-cover object-center"
             fetchPriority="high"
+            placeholder="empty"
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,13,13,0.97) 0%, rgba(13,13,13,0.55) 45%, rgba(13,13,13,0.1) 100%)" }} />
 
@@ -62,12 +63,12 @@ export default function SplitHero() {
         <div style={{ height: 2, background: "linear-gradient(to right, transparent, #C4A35A 20%, #C4A35A 80%, transparent)", opacity: 0.7 }} />
 
         {/* Panneau Femme */}
-        <div className="relative overflow-hidden flex flex-col" style={{ flex: "1" }}>
+        <div className="relative overflow-hidden flex flex-col" style={{ flex: "1", minHeight: "50svh" }}>
           <Image
             src="/images/women/women-nail-bar.avif"
-            alt=""
+            alt="Le Cercle — Espace Femme"
             fill
-            priority
+            loading="lazy"
             sizes="100vw"
             className="object-cover object-center"
           />
