@@ -19,6 +19,7 @@ export default function SplitHero() {
             priority
             sizes="100vw"
             className="object-cover object-center"
+            fetchPriority="high"
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,13,13,0.97) 0%, rgba(13,13,13,0.55) 45%, rgba(13,13,13,0.1) 100%)" }} />
 
