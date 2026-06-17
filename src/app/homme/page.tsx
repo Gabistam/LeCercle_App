@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "L'endroit où un homme prend soin de lui sans s'expliquer. Coupe, barbe, soin visage dans un cadre noir, laiton et cuir au sein des centres Casa Padel.",
 };
 
-const FRESHA_URL = "https://www.fresha.com/book-now/news-smart-huroubs6/all-offer?id=2899050&share=true&pId=2790182";
+const FRESHA_URL = "https://www.fresha.com/book-now/news-smart-huroubs6/all-offer?id=2885690&share=true&pId=2790182";
 
 const forfaits = [
   {
