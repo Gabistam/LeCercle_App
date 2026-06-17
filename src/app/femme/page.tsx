@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Un espace pensé pour celles qui refusent de choisir entre efficacité et plaisir. Ongles, soins, brushing, massages dans un cadre travertin, bois clair et lumière douce.",
 };
 
-const FRESHA_URL = "https://www.fresha.com/book-now/news-smart-huroubs6/all-offer?id=2899050&share=true&pId=2790182";
+const FRESHA_URL = "https://www.fresha.com/book-now/news-smart-huroubs6/all-offer?id=2885690&share=true&pId=2790182";
 
 const soinsSignature = [
   {

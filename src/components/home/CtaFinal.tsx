@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const FRESHA_URL = "https://www.fresha.com/book-now/news-smart-huroubs6/all-offer?id=2899050&share=true&pId=2790182";
+const FRESHA_URL = "https://www.fresha.com/book-now/news-smart-huroubs6/all-offer?id=2885690&share=true&pId=2790182";
 
 export default function CtaFinal() {
   return (

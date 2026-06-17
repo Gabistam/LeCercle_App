@@ -6,7 +6,11 @@
       "Bash(npx tsc *)",
       "Bash(dir \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\")",
       "Bash(git merge *)",
-      "Bash(git stash *)"
+      "Bash(git stash *)",
+      "Bash(git push *)",
+      "Bash(powershell *)",
+      "Bash(sed -n '644,968p' index.html)",
+      "Read(//tmp/**)"
     ]
   }
 }
