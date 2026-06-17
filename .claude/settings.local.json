@@ -10,7 +10,8 @@
       "Bash(git push *)",
       "Bash(powershell *)",
       "Bash(sed -n '644,968p' index.html)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(git add *)"
     ]
   }
 }
