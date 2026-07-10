@@ -11,7 +11,10 @@
       "Bash(powershell *)",
       "Bash(sed -n '644,968p' index.html)",
       "Read(//tmp/**)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git -C \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\" status)",
+      "Bash(git -C \"C:\\\\Users\\\\gabistam\\\\Desktop\\\\DevPro\\\\LeCercle_App\" log --oneline -15)",
+      "Bash(git *)"
     ]
   }
 }
