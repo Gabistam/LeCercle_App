@@ -25,6 +25,17 @@ export async function generateMetadata({
   };
 }
 
+const SITE_URL = "https://lecerclestudio.com";
+
+// "09 48 19 48 24" → "+33948194824"
+const toE164 = (phone: string) => `+33${phone.replace(/\s/g, "").slice(1)}`;
+
+// "12:00" → "12h", "10:30" → "10h30"
+const formatHour = (time: string) => {
+  const [h, m] = time.split(":");
+  return m === "00" ? `${Number(h)}h` : `${Number(h)}h${m}`;
+};
+
 const serviceLabels: Record<string, string> = {
   barber: "Barber",
   grooming: "Grooming",
@@ -133,7 +144,7 @@ export default async function SalonPage({
         className="py-12 px-6 border-t"
         style={{ backgroundColor: "#171719", borderColor: "rgba(201,168,76,0.1)" }}
       >
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="flex flex-col gap-2">
             <p
               className="section-overline"
@@ -150,6 +161,48 @@ export default async function SalonPage({
               {salon.postalCode} {salon.city}
             </p>
           </div>
+
+          {salon.phone && (
+            <div className="flex flex-col gap-2">
+              <p
+                className="section-overline"
+                style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
+              >
+                Téléphone
+              </p>
+              <a
+                href={`tel:${toE164(salon.phone)}`}
+                className="text-sm hover:opacity-70 transition-opacity self-start"
+                style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow, sans-serif)", fontWeight: 300 }}
+              >
+                {salon.phone}
+              </a>
+            </div>
+          )}
+
+          {salon.openingHours && (
+            <div className="flex flex-col gap-2">
+              <p
+                className="section-overline"
+                style={{ color: "#C9A84C", fontFamily: "var(--font-barlow-cond, sans-serif)" }}
+              >
+                Horaires
+              </p>
+              <ul
+                className="text-sm flex flex-col gap-1"
+                style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow, sans-serif)", fontWeight: 300 }}
+              >
+                {salon.openingHours.map((h) => (
+                  <li key={h.label} className="flex justify-between gap-6 max-w-xs">
+                    <span>{h.label}</span>
+                    <span className={h.closed ? "opacity-50" : undefined}>
+                      {h.closed ? "Fermé" : `${formatHour(h.opens)} – ${formatHour(h.closes)}`}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className="flex flex-col gap-2">
             <p
@@ -180,6 +233,21 @@ export default async function SalonPage({
               Via Fresha — redirection depuis les pages Réserver.
             </p>
           </div>
+        </div>
+
+        {/* Carte Google Maps */}
+        <div className="max-w-7xl mx-auto mt-10">
+          <iframe
+            title={`Plan d'accès — ${salon.name}`}
+            src={`https://www.google.com/maps?q=${encodeURIComponent(
+              `${salon.address}, ${salon.postalCode} ${salon.city}`
+            )}&hl=fr&output=embed`}
+            className="w-full border-0"
+            style={{ height: 380, border: "1px solid rgba(201,168,76,0.2)" }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
         </div>
       </section>
 
@@ -249,7 +317,7 @@ export default async function SalonPage({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "BeautySalon",
+            "@type": "BarberShop",
             name: salon.name,
             address: {
               "@type": "PostalAddress",
@@ -258,7 +326,23 @@ export default async function SalonPage({
               addressLocality: salon.city,
               addressCountry: "FR",
             },
-            url: `https://lecercle.fr/salons/${salon.slug}`,
+            url: `${SITE_URL}/salons/${salon.slug}`,
+            telephone: salon.phone && toE164(salon.phone),
+            openingHoursSpecification: salon.openingHours
+              ?.filter((h) => !h.closed)
+              .map((h) => ({
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: h.days,
+                opens: h.opens,
+                closes: h.closes,
+              })),
+            geo: salon.geo && {
+              "@type": "GeoCoordinates",
+              latitude: salon.geo.latitude,
+              longitude: salon.geo.longitude,
+            },
+            priceRange: salon.priceRange,
+            sameAs: salon.sameAs,
           }),
         }}
       />

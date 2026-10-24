@@ -54,7 +54,7 @@ export default function SplitHero() {
               </Link>
             </div>
             <p style={{ fontFamily: "var(--font-jost, sans-serif)", fontSize: "9px", fontWeight: 300, letterSpacing: "1.5px", color: "rgba(241,240,236,0.32)", fontStyle: "italic" }}>
-              À partir de 35 € · 45 min de sérénité
+              Coupe dès 24 € · 45 min de sérénité
             </p>
           </div>
         </Link>

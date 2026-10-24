@@ -1,4 +1,5 @@
 import type { Salon } from "@/types";
+import { INSTAGRAM_URL } from "@/data/socials";
 
 const FRESHA_URL = "https://www.fresha.com/book-now/news-smart-huroubs6/all-offer?id=2885690&share=true&pId=2790182";
 
@@ -12,7 +13,24 @@ export const salons: Salon[] = [
     department: "93",
     address: "103 Rue Charles Michels",
     postalCode: "93200",
+    phone: "09 48 19 48 24",
     services: ["barber", "grooming", "nails", "massage", "recovery", "ritual"],
+    openingHours: [
+      { label: "Lundi – Mardi", days: ["Monday", "Tuesday"], opens: "12:00", closes: "21:00" },
+      {
+        label: "Mercredi – Samedi",
+        days: ["Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "10:00",
+        closes: "21:00",
+      },
+      { label: "Dimanche", days: ["Sunday"], closed: true },
+    ],
+    geo: { latitude: 48.9296613, longitude: 2.3454704 },
+    priceRange: "8 € - 40 €",
+    sameAs: [
+      INSTAGRAM_URL,
+      "https://www.fresha.com/a/le-cercle-coiffeur-barbier-saint-denis-saint-denis-103-rue-charles-michels-ztrzxzu1",
+    ],
     image: "/images/salons/salon-saint-denis-card.avif",
     googleMapsUrl: "https://maps.google.com/?q=103+Rue+Charles+Michels+93200+Saint-Denis",
     freshaUrlGlobal: FRESHA_URL,

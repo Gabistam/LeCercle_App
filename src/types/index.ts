@@ -38,6 +38,19 @@ export type SalonService =
   | "recovery"
   | "ritual";
 
+export type DayOfWeek =
+  | "Monday"
+  | "Tuesday"
+  | "Wednesday"
+  | "Thursday"
+  | "Friday"
+  | "Saturday"
+  | "Sunday";
+
+export type OpeningHours =
+  | { label: string; days: DayOfWeek[]; opens: string; closes: string; closed?: false }
+  | { label: string; days: DayOfWeek[]; closed: true };
+
 export type Salon = {
   id: string;
   slug: string;
@@ -47,6 +60,7 @@ export type Salon = {
   department?: string;
   address: string;
   postalCode?: string;
+  /** Numéro français au format d'affichage, ex. "09 48 19 48 24" */
   phone?: string;
   email?: string;
   freshaUrlMen?: string;
@@ -54,11 +68,10 @@ export type Salon = {
   freshaUrlGlobal?: string;
   googleMapsUrl?: string;
   services: SalonService[];
-  openingHours?: {
-    label: string;
-    days: string;
-    hours: string;
-  }[];
+  openingHours?: OpeningHours[];
+  geo?: { latitude: number; longitude: number };
+  priceRange?: string;
+  sameAs?: string[];
   image: string;
   isComingSoon?: boolean;
 };

@@ -56,7 +56,7 @@ export default function SplitHeroDesktop({ freshaUrl }: Props) {
             <em style={{ fontStyle: "italic", color: "#C4A35A", display: "block" }}>&amp; Soins</em>
           </h2>
           <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 9, marginBottom: 0 }}>
-            {["Coupe ciseaux & tondeuse", "Barbe & finition lame", "Soin du visage", "Forfaits dès 35 €"].map((s) => (
+            {["Coupe ciseaux & tondeuse", "Barbe & finition lame", "Soin du visage", "Coupe dès 24 €"].map((s) => (
               <li key={s} style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontSize: "17px", fontWeight: 300, color: "rgba(241,240,236,0.65)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#C4A35A", flexShrink: 0, opacity: 0.75, display: "inline-block" }} />
                 {s}

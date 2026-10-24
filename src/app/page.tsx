@@ -9,7 +9,7 @@ import AvisClients from "@/components/home/AvisClients";
 import CtaFinal from "@/components/home/CtaFinal";
 
 export const metadata: Metadata = {
-  title: "Le Cercle — Maison de soins premium | Casa Padel",
+  title: { absolute: "Le Cercle Studio — Barber & coiffeur à Saint-Denis | Casa Padel" },
   description:
     "Le Cercle, maison de soins premium intégrée aux centres Casa Padel en Région Parisienne. Barber, grooming, nail bar, massage et récupération après sport.",
 };

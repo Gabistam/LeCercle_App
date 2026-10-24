@@ -72,7 +72,7 @@ export default function AvisClients() {
             <div style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: 8, fontWeight: 300, letterSpacing: 2, textTransform: "uppercase", color: "rgba(196,163,90,0.5)" }}>Via Fresha · Région Parisienne</div>
           </div>
         </div>
-        <a href="https://www.fresha.com/fr/a/fitcare-cormeilles-en-parisis-cormeilles-en-parisis-cormeilles-en-parisis-1-boulevard-du-parisis-f2hofeu8/booking?menu=true" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#C4A35A", border: "1px solid rgba(196,163,90,0.3)", padding: "14px 22px", textDecoration: "none", display: "inline-block", flexShrink: 0 }}>
+        <a href="https://search.google.com/local/writereview?placeid=ChIJyR13C_dv5kcRT841z4AlVi8" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-barlow-cond, sans-serif)", fontSize: "8.5px", fontWeight: 300, letterSpacing: "4px", textTransform: "uppercase", color: "#C4A35A", border: "1px solid rgba(196,163,90,0.3)", padding: "14px 22px", textDecoration: "none", display: "inline-block", flexShrink: 0 }}>
           Voir tous les avis →
         </a>
       </div>

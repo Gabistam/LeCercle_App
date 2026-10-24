@@ -1,5 +1,13 @@
 import Link from "next/link";
 import { salons } from "@/data/salons";
+import { socialLinks } from "@/data/socials";
+import type { SocialLinks } from "@/types";
+
+const socials: { key: keyof SocialLinks; label: string; short: string }[] = [
+  { key: "instagram", label: "Instagram", short: "IG" },
+  { key: "tiktok", label: "TikTok", short: "TK" },
+  { key: "facebook", label: "Facebook", short: "FB" },
+];
 
 export default function SiteFooter() {
   return (
@@ -31,31 +39,21 @@ export default function SiteFooter() {
             Maison de soins premium intégrée aux centres Casa Padel.
           </p>
           <div className="flex gap-4 mt-2">
-            {/* Social links — URLs à renseigner */}
-            <a
-              href="#"
-              className="text-xs tracking-widest uppercase transition-colors hover:opacity-100 opacity-50"
-              aria-label="Instagram"
-              style={{ color: "var(--uni-text)" }}
-            >
-              IG
-            </a>
-            <a
-              href="#"
-              className="text-xs tracking-widest uppercase transition-colors hover:opacity-100 opacity-50"
-              aria-label="TikTok"
-              style={{ color: "var(--uni-text)" }}
-            >
-              TK
-            </a>
-            <a
-              href="#"
-              className="text-xs tracking-widest uppercase transition-colors hover:opacity-100 opacity-50"
-              aria-label="Facebook"
-              style={{ color: "var(--uni-text)" }}
-            >
-              FB
-            </a>
+            {socials.map(({ key, label, short }) =>
+              socialLinks[key] ? (
+                <a
+                  key={key}
+                  href={socialLinks[key]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs tracking-widest uppercase transition-colors hover:opacity-100 opacity-50"
+                  aria-label={label}
+                  style={{ color: "var(--uni-text)" }}
+                >
+                  {short}
+                </a>
+              ) : null
+            )}
           </div>
         </div>
 
@@ -166,7 +164,7 @@ export default function SiteFooter() {
             className="text-xs opacity-40"
             style={{ fontFamily: "var(--uni-font-label)" }}
           >
-            © {new Date().getFullYear()} Le Cercle — En partenariat avec Casa Padel
+            © 2026 Gabistam — Site créé pour Le Cercle, en partenariat avec Casa Padel
           </p>
           <p
             className="text-xs opacity-40"
