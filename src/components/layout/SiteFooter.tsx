@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { salons } from "@/data/salons";
 import { socialLinks } from "@/data/socials";
+import { IconInstagram } from "@/components/icons/Icons";
 import type { SocialLinks } from "@/types";
 
-const socials: { key: keyof SocialLinks; label: string; short: string }[] = [
-  { key: "instagram", label: "Instagram", short: "IG" },
+// `icon` absent → le lien s'affiche avec son abréviation `short`
+const socials: { key: keyof SocialLinks; label: string; short: string; icon?: React.ReactNode }[] = [
+  { key: "instagram", label: "Instagram", short: "IG", icon: <IconInstagram size={20} /> },
   { key: "tiktok", label: "TikTok", short: "TK" },
   { key: "facebook", label: "Facebook", short: "FB" },
 ];
@@ -39,18 +41,18 @@ export default function SiteFooter() {
             Maison de soins premium intégrée aux centres Casa Padel.
           </p>
           <div className="flex gap-4 mt-2">
-            {socials.map(({ key, label, short }) =>
+            {socials.map(({ key, label, short, icon }) =>
               socialLinks[key] ? (
                 <a
                   key={key}
                   href={socialLinks[key]}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs tracking-widest uppercase transition-colors hover:opacity-100 opacity-50"
+                  className="inline-flex items-center text-xs tracking-widest uppercase transition-colors hover:opacity-100 opacity-50"
                   aria-label={label}
                   style={{ color: "var(--uni-text)" }}
                 >
-                  {short}
+                  {icon ?? short}
                 </a>
               ) : null
             )}

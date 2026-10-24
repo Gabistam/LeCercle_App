@@ -48,6 +48,10 @@ export const IconClock = ({ size = 18, color = "currentColor" }: IconProps) => b
   <><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></>
 );
 
-export const IconArrowRight = ({ size = 18, color = "currentColor" }: IconProps) => base(size, color,
+export const IconInstagram = ({ size = 18, color = "currentColor" }: IconProps) => base(size, color,
+  <><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><path d="M17.5 6.5h.01" /></>
+);
+
+export const IconArrowRight =({ size = 18, color = "currentColor" }: IconProps) => base(size, color,
   <><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></>
 );
