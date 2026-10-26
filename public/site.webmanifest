@@ -1,5 +1,5 @@
 {
-  "name": "Le Cercle — Maison de soins premium",
+  "name": "Le Cercle, coiffeur-barbier",
   "short_name": "Le Cercle",
   "icons": [
     {
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#0C0C0C",
-  "background_color": "#0C0C0C",
+  "theme_color": "#0c0b0a",
+  "background_color": "#0c0b0a",
   "display": "standalone"
 }
