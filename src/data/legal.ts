@@ -1,25 +1,21 @@
-// Informations légales de l'éditeur : à compléter ici, une seule fois.
-// Elles alimentent /mentions-legales et /confidentialite.
-// Les champs "[À compléter]" ne sont pas publiés par fitcarebarber.com
-// (même éditeur) : à renseigner avant la mise en production.
-export const TODO = "[À compléter]";
+// Informations légales de l'éditeur. Elles alimentent /mentions-legales et /confidentialite.
+// À l'immatriculation de VISION, remplacer le bloc `editor`.
 
 export const legal = {
   siteUrl: "https://lecerclestudio.com",
   editor: {
-    name: "Fit'care",
-    legalForm: TODO,
-    capital: TODO,
-    registration: TODO, // SIRET + RCS
-    vat: TODO,
-    address: `${TODO}, Saint-Ouen-sur-Seine (93400)`,
-    publicationDirector: "Yves Odi Fuankenda",
-    email: "contact@fitcarebarber.com",
-    phone: "+33 1 84 60 30 95",
+    name: "TIKADI",
+    legalForm: "Société par actions simplifiée à associé unique",
+    capital: "1 000 €",
+    registration: "RCS Meaux 989 746 052",
+    address: "3 allée Xavier Bichat, 77420 Champs-sur-Marne",
+    publicationDirector: "Yves Fuankenda-Odi, président",
+    email: "lecerclestudiobarber@gmail.com",
+    phone: "09 48 19 48 24",
   },
   host: {
-    name: "Hostinger International Ltd.",
-    location: "Vilnius (Lituanie)",
+    name: "Hostinger International Ltd",
+    address: "61 Lordou Vironos Street, 6023 Larnaca, Chypre",
     url: "https://www.hostinger.fr",
   },
   developer: {

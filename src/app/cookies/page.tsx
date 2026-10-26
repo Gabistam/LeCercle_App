@@ -1,70 +1,49 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import SiteHeader from "@/components/layout/SiteHeader";
-import SiteFooter from "@/components/layout/SiteFooter";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
 
 export const metadata: Metadata = {
-  title: "Gestion des cookies — Le Cercle",
+  title: "Cookies",
+  alternates: { canonical: "/cookies" },
+  robots: { index: false, follow: true },
 };
 
-export default function CookiesPage() {
+export default function Cookies() {
   return (
-    <div data-universe="mixed">
-      <SiteHeader />
-      <main>
-        <section className="pt-32 pb-16 px-6" style={{ backgroundColor: "#0C0C0C" }}>
-          <div className="max-w-3xl mx-auto flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
-              <div className="w-10 h-px" style={{ backgroundColor: "#C9A84C" }} />
-              <h1 className="text-5xl uppercase leading-none" style={{ color: "#F1F1F1", fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)", letterSpacing: "0.05em" }}>
-                Cookies
-              </h1>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 px-6" style={{ backgroundColor: "#0C0C0C" }}>
-          <div className="max-w-3xl mx-auto flex flex-col gap-10">
-            {[
-              {
-                title: "Qu'est-ce qu'un cookie ?",
-                content: "Un cookie est un petit fichier texte déposé sur votre terminal lors de la visite d'un site web. Il permet au site de mémoriser certaines informations sur votre navigation.",
-              },
-              {
-                title: "Cookies utilisés sur ce site",
-                content: "Ce site utilise uniquement des cookies strictement nécessaires à son fonctionnement. Aucun cookie de tracking publicitaire n'est déposé sans votre consentement explicite.",
-              },
-              {
-                title: "Cookies strictement nécessaires",
-                content: "Ces cookies sont indispensables au fonctionnement du site. Ils ne peuvent pas être désactivés. Ils n'enregistrent aucune information personnellement identifiable.",
-              },
-              {
-                title: "Cookies analytiques (optionnels)",
-                content: "Si des outils d'analyse sont activés à l'avenir (ex. : Google Analytics, Plausible), ils feront l'objet d'un recueil de consentement préalable via un bandeau dédié.",
-              },
-              {
-                title: "Gestion de vos préférences",
-                content: "Vous pouvez à tout moment modifier vos préférences cookies via les paramètres de votre navigateur. La désactivation de certains cookies peut affecter l'expérience de navigation.",
-              },
-            ].map((section) => (
-              <div key={section.title} className="flex flex-col gap-3 pt-6 border-t" style={{ borderColor: "rgba(201,168,76,0.1)" }}>
-                <h2 className="text-xl uppercase" style={{ color: "#C9A84C", fontFamily: "var(--font-bebas, 'Arial Black', sans-serif)", letterSpacing: "0.08em" }}>
-                  {section.title}
-                </h2>
-                <p className="text-sm leading-relaxed opacity-50 whitespace-pre-line" style={{ color: "#F1F1F1", fontFamily: "var(--font-barlow, sans-serif)", fontWeight: 300 }}>
-                  {section.content}
-                </p>
-              </div>
-            ))}
-
-            <div className="flex gap-4 pt-6 border-t" style={{ borderColor: "rgba(201,168,76,0.1)" }}>
-              <Link href="/mentions-legales" className="btn-ghost text-xs">Mentions légales →</Link>
-              <Link href="/confidentialite" className="btn-ghost text-xs">Confidentialité →</Link>
-            </div>
-          </div>
-        </section>
-      </main>
-      <SiteFooter />
-    </div>
+    <section className="section">
+      <div className="wrap legal">
+        <div>
+          <span className="eyebrow">Traceurs</span>
+          <h1 className="h-page" style={{ fontSize: "clamp(40px, 5vw, 64px)" }}>Cookies</h1>
+        </div>
+        <div>
+          <h2>Traceurs nécessaires</h2>
+          <p>
+            Le site mémorise votre choix sur les cookies dans votre navigateur. Ce stockage ne sert qu&apos;à ne pas vous
+            reposer la question et ne demande pas de consentement.
+          </p>
+        </div>
+        <div>
+          <h2>Mesure d&apos;audience</h2>
+          <p>
+            Google Tag Manager et Google Analytics comptent les visites, leur provenance (Google, publicité, réseaux sociaux) et les clics sur les boutons « Réserver », « Itinéraire » et
+            « Appeler ». Ils ne sont chargés qu&apos;après votre accord dans le bandeau. Sans accord, aucun traceur Google
+            n&apos;est déposé.
+          </p>
+        </div>
+        <div>
+          <h2>Contenus tiers</h2>
+          <p>
+            Les liens vers Google Maps, Fresha, Instagram et TikTok ouvrent les sites concernés, qui appliquent leurs
+            propres règles.
+          </p>
+        </div>
+        <div>
+          <h2>Changer d&apos;avis</h2>
+          <p>
+            Vous pouvez modifier votre choix à tout moment : <span style={{ color: "var(--brass)" }}><CookieSettingsButton /></span>
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
