@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { Gallery, JsonLd, MenuItems } from "@/components/ui";
 import { favorites } from "@/data/carte";
 import { formatHour, openSalons } from "@/data/salons";
-import { breadcrumb, salonSchema } from "@/data/schema";
+import { breadcrumb, faqSchema, salonSchema } from "@/data/schema";
+import { faq } from "@/data/faq";
 import { bookingUrl, track } from "@/data/track";
 
 export const dynamicParams = false;
@@ -32,6 +33,7 @@ export default async function SalonPage({ params }: { params: Promise<{ slug: st
   return (
     <>
       <JsonLd data={salonSchema(s)} />
+      <JsonLd data={faqSchema(faq(s))} />
       <JsonLd
         data={breadcrumb([
           { name: "Accueil", path: "/" },
@@ -141,6 +143,32 @@ export default async function SalonPage({ params }: { params: Promise<{ slug: st
       </section>
 
       <Gallery start={1} />
+
+      <section className="section tight-top">
+        <div className="wrap split">
+          <div className="intro">
+            <span className="eyebrow">Questions fréquentes</span>
+            <h2 className="h-sub">
+              Avant de <em>venir.</em>
+            </h2>
+            <p className="muted">
+              Une autre question ? Appelez le salon au{" "}
+              <a href={`tel:${s.phoneE164}`} {...track("appeler", "salon-faq")}>
+                {s.phone}
+              </a>
+              .
+            </p>
+          </div>
+          <div className="faq">
+            {faq(s).map((q) => (
+              <details key={q.q}>
+                <summary>{q.q}</summary>
+                <p>{q.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }
