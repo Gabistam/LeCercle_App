@@ -19,7 +19,11 @@ Valeurs de `emplacement` : `entete`, `barre-mobile`, `accueil-haut`, `accueil-ba
 
 Les liens Fresha portent aussi `utm_source=lecerclestudio.com&utm_medium=site&utm_campaign=reservation&utm_content=<emplacement>`.
 
-## Réglages GTM (à faire une fois)
+## Réglages GTM
+
+Déjà faits le 26 octobre 2026 dans l'espace de travail du conteneur (import de `docs/gtm-le-cercle.json`), mesure GA4 `G-CPJZYG4PY4`. Il reste à cliquer sur « Envoyer » (publier) au moment de la mise en ligne du nouveau site, pas avant : l'ancien site charge GTM sans bandeau cookies.
+
+Contenu :
 
 1. Balise « Google Tag » avec l'ID de mesure GA4, déclencheur « Initialization - All Pages ».
 2. Variables de couche de données : `emplacement`, `page`, `source`, `medium`, `campagne`, `page_arrivee`, `formulaire`.
@@ -29,7 +33,7 @@ Les liens Fresha portent aussi `utm_source=lecerclestudio.com&utm_medium=site&ut
 
 ## Réglages GA4
 
-1. Admin → Événements : marquer `clic_reserver`, `clic_appeler` et `formulaire_envoye` comme événements clés.
+1. Une fois les premiers clics reçus, Admin → Événements : marquer `clic_reserver`, `clic_appeler` et `formulaire_envoye` comme événements clés.
 2. Admin → Flux de données → Web → Configurer les paramètres du tag → Configurer vos domaines : ajouter `lecerclestudio.com` et `fresha.com` (suivi inter-domaines vers la réservation).
 3. Admin → Définitions personnalisées : créer les dimensions `emplacement` et `page_arrivee`.
 4. Lier GA4 à Google Ads (Admin → Associations de produits) pour importer les événements clés.

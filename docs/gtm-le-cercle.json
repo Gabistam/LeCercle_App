@@ -1,0 +1,426 @@
+{
+ "exportFormatVersion": 2,
+ "containerVersion": {
+  "path": "accounts/6363603952/containers/256984734/versions/0",
+  "accountId": "6363603952",
+  "containerId": "256984734",
+  "containerVersionId": "0",
+  "container": {
+   "path": "accounts/6363603952/containers/256984734",
+   "accountId": "6363603952",
+   "containerId": "256984734",
+   "name": "lecerclestudio.com",
+   "publicId": "GTM-5JJCJ7MZ",
+   "usageContext": [
+    "WEB"
+   ]
+  },
+  "tag": [
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "tagId": "1",
+    "name": "Google tag GA4 (G-CPJZYG4PY4)",
+    "type": "googtag",
+    "parameter": [
+     {
+      "type": "TEMPLATE",
+      "key": "tagId",
+      "value": "G-CPJZYG4PY4"
+     }
+    ],
+    "firingTriggerId": [
+     "2147479573"
+    ],
+    "tagFiringOption": "ONCE_PER_EVENT"
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "tagId": "2",
+    "name": "GA4 - Clics et formulaires du site",
+    "type": "gaawe",
+    "parameter": [
+     {
+      "type": "BOOLEAN",
+      "key": "sendEcommerceData",
+      "value": "false"
+     },
+     {
+      "type": "TEMPLATE",
+      "key": "eventName",
+      "value": "{{Event}}"
+     },
+     {
+      "type": "TEMPLATE",
+      "key": "measurementIdOverride",
+      "value": "G-CPJZYG4PY4"
+     },
+     {
+      "type": "LIST",
+      "key": "eventSettingsTable",
+      "list": [
+       {
+        "type": "MAP",
+        "map": [
+         {
+          "type": "TEMPLATE",
+          "key": "parameter",
+          "value": "emplacement"
+         },
+         {
+          "type": "TEMPLATE",
+          "key": "parameterValue",
+          "value": "{{DL - emplacement}}"
+         }
+        ]
+       },
+       {
+        "type": "MAP",
+        "map": [
+         {
+          "type": "TEMPLATE",
+          "key": "parameter",
+          "value": "page"
+         },
+         {
+          "type": "TEMPLATE",
+          "key": "parameterValue",
+          "value": "{{DL - page}}"
+         }
+        ]
+       },
+       {
+        "type": "MAP",
+        "map": [
+         {
+          "type": "TEMPLATE",
+          "key": "parameter",
+          "value": "source"
+         },
+         {
+          "type": "TEMPLATE",
+          "key": "parameterValue",
+          "value": "{{DL - source}}"
+         }
+        ]
+       },
+       {
+        "type": "MAP",
+        "map": [
+         {
+          "type": "TEMPLATE",
+          "key": "parameter",
+          "value": "medium"
+         },
+         {
+          "type": "TEMPLATE",
+          "key": "parameterValue",
+          "value": "{{DL - medium}}"
+         }
+        ]
+       },
+       {
+        "type": "MAP",
+        "map": [
+         {
+          "type": "TEMPLATE",
+          "key": "parameter",
+          "value": "campagne"
+         },
+         {
+          "type": "TEMPLATE",
+          "key": "parameterValue",
+          "value": "{{DL - campagne}}"
+         }
+        ]
+       },
+       {
+        "type": "MAP",
+        "map": [
+         {
+          "type": "TEMPLATE",
+          "key": "parameter",
+          "value": "page_arrivee"
+         },
+         {
+          "type": "TEMPLATE",
+          "key": "parameterValue",
+          "value": "{{DL - page_arrivee}}"
+         }
+        ]
+       },
+       {
+        "type": "MAP",
+        "map": [
+         {
+          "type": "TEMPLATE",
+          "key": "parameter",
+          "value": "formulaire"
+         },
+         {
+          "type": "TEMPLATE",
+          "key": "parameterValue",
+          "value": "{{DL - formulaire}}"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "firingTriggerId": [
+     "10",
+     "11"
+    ],
+    "tagFiringOption": "ONCE_PER_EVENT"
+   }
+  ],
+  "trigger": [
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "triggerId": "10",
+    "name": "Clics balisés (clic_*)",
+    "type": "CUSTOM_EVENT",
+    "customEventFilter": [
+     {
+      "type": "MATCH_REGEX",
+      "parameter": [
+       {
+        "type": "TEMPLATE",
+        "key": "arg0",
+        "value": "{{_event}}"
+       },
+       {
+        "type": "TEMPLATE",
+        "key": "arg1",
+        "value": "^clic_.*"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "triggerId": "11",
+    "name": "Formulaire envoyé",
+    "type": "CUSTOM_EVENT",
+    "customEventFilter": [
+     {
+      "type": "EQUALS",
+      "parameter": [
+       {
+        "type": "TEMPLATE",
+        "key": "arg0",
+        "value": "{{_event}}"
+       },
+       {
+        "type": "TEMPLATE",
+        "key": "arg1",
+        "value": "formulaire_envoye"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "variable": [
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "variableId": "20",
+    "name": "DL - emplacement",
+    "type": "v",
+    "parameter": [
+     {
+      "type": "INTEGER",
+      "key": "dataLayerVersion",
+      "value": "2"
+     },
+     {
+      "type": "BOOLEAN",
+      "key": "setDefaultValue",
+      "value": "false"
+     },
+     {
+      "type": "TEMPLATE",
+      "key": "name",
+      "value": "emplacement"
+     }
+    ]
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "variableId": "21",
+    "name": "DL - page",
+    "type": "v",
+    "parameter": [
+     {
+      "type": "INTEGER",
+      "key": "dataLayerVersion",
+      "value": "2"
+     },
+     {
+      "type": "BOOLEAN",
+      "key": "setDefaultValue",
+      "value": "false"
+     },
+     {
+      "type": "TEMPLATE",
+      "key": "name",
+      "value": "page"
+     }
+    ]
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "variableId": "22",
+    "name": "DL - source",
+    "type": "v",
+    "parameter": [
+     {
+      "type": "INTEGER",
+      "key": "dataLayerVersion",
+      "value": "2"
+     },
+     {
+      "type": "BOOLEAN",
+      "key": "setDefaultValue",
+      "value": "false"
+     },
+     {
+      "type": "TEMPLATE",
+      "key": "name",
+      "value": "source"
+     }
+    ]
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "variableId": "23",
+    "name": "DL - medium",
+    "type": "v",
+    "parameter": [
+     {
+      "type": "INTEGER",
+      "key": "dataLayerVersion",
+      "value": "2"
+     },
+     {
+      "type": "BOOLEAN",
+      "key": "setDefaultValue",
+      "value": "false"
+     },
+     {
+      "type": "TEMPLATE",
+      "key": "name",
+      "value": "medium"
+     }
+    ]
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "variableId": "24",
+    "name": "DL - campagne",
+    "type": "v",
+    "parameter": [
+     {
+      "type": "INTEGER",
+      "key": "dataLayerVersion",
+      "value": "2"
+     },
+     {
+      "type": "BOOLEAN",
+      "key": "setDefaultValue",
+      "value": "false"
+     },
+     {
+      "type": "TEMPLATE",
+      "key": "name",
+      "value": "campagne"
+     }
+    ]
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "variableId": "25",
+    "name": "DL - page_arrivee",
+    "type": "v",
+    "parameter": [
+     {
+      "type": "INTEGER",
+      "key": "dataLayerVersion",
+      "value": "2"
+     },
+     {
+      "type": "BOOLEAN",
+      "key": "setDefaultValue",
+      "value": "false"
+     },
+     {
+      "type": "TEMPLATE",
+      "key": "name",
+      "value": "page_arrivee"
+     }
+    ]
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "variableId": "26",
+    "name": "DL - formulaire",
+    "type": "v",
+    "parameter": [
+     {
+      "type": "INTEGER",
+      "key": "dataLayerVersion",
+      "value": "2"
+     },
+     {
+      "type": "BOOLEAN",
+      "key": "setDefaultValue",
+      "value": "false"
+     },
+     {
+      "type": "TEMPLATE",
+      "key": "name",
+      "value": "formulaire"
+     }
+    ]
+   }
+  ],
+  "builtInVariable": [
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "type": "EVENT",
+    "name": "Event"
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "type": "PAGE_URL",
+    "name": "Page URL"
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "type": "PAGE_PATH",
+    "name": "Page Path"
+   },
+   {
+    "accountId": "6363603952",
+    "containerId": "256984734",
+    "type": "REFERRER",
+    "name": "Referrer"
+   }
+  ]
+ },
+ "exportTime": "2026-10-26 21:15:00"
+}
