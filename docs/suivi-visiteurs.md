@@ -1,6 +1,6 @@
 # Suivi des visiteurs : réglages à faire dans Google Tag Manager et Google Analytics
 
-Le site envoie déjà les informations à Google Tag Manager (conteneur GTM-5JJCJ7MZ), seulement après que le visiteur a cliqué sur « Accepter » dans le bandeau cookies.
+Le site charge Google Tag Manager (conteneur GTM-5JJCJ7MZ) pour tous les visiteurs, en mode consentement Google v2 (avancé) : tout est refusé par défaut ; « Accepter » active les cookies Google ; sans accord, Google ne reçoit que des signaux anonymes sans cookie, qu'il utilise pour modéliser les visites et conversions.
 
 ## Ce que le site envoie (dataLayer)
 

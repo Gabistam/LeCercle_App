@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Script from "next/script";
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { GTM_ID } from "@/data/site";
 
 const KEY = "lecercle-consent";
 const EVT = "lecercle:consent";
@@ -26,8 +24,8 @@ function snapshot() {
 }
 
 /**
- * Bandeau cookies + chargement de Google Tag Manager.
- * GTM (mesure d'audience, suivi des clics Réserver / Appeler) n'est chargé qu'après « Accepter ».
+ * Bandeau cookies. Google Tag Manager est chargé pour tous (layout.tsx) en mode consentement :
+ * « Accepter » active les cookies Google, « Refuser » laisse Google en mode anonyme sans cookie.
  */
 export default function Consent() {
   const choice = useSyncExternalStore(subscribe, snapshot, () => "ssr");
@@ -58,8 +56,8 @@ export default function Consent() {
   }, []);
 
   // Envoie à GTM chaque clic sur un bouton balisé : clic_reserver, clic_appeler, clic_itineraire…
+  // Sans accord, Google ne reçoit ces clics que sous forme anonyme (mode consentement).
   useEffect(() => {
-    if (choice !== "granted") return;
     const onClick = (e: MouseEvent) => {
       const el = (e.target as HTMLElement | null)?.closest<HTMLElement>("[data-track]");
       if (!el) return;
@@ -78,7 +76,7 @@ export default function Consent() {
     };
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
-  }, [choice]);
+  }, []);
 
   const save = (c: "granted" | "denied") => {
     const before = snapshot();
@@ -86,7 +84,15 @@ export default function Consent() {
       localStorage.setItem(KEY, c);
     } catch {}
     setReopened(false);
-    // Retrait du consentement : on recharge pour décharger GTM.
+    const value = c === "granted" ? "granted" : "denied";
+    const w = window as unknown as { gtag?: (...a: unknown[]) => void };
+    w.gtag?.("consent", "update", {
+      ad_storage: value,
+      analytics_storage: value,
+      ad_user_data: value,
+      ad_personalization: value,
+    });
+    // Retrait du consentement : on recharge pour effacer l'état de la page.
     if (before === "granted" && c === "denied") return location.reload();
     window.dispatchEvent(new Event(EVT));
   };
@@ -95,16 +101,12 @@ export default function Consent() {
 
   return (
     <>
-      {choice === "granted" && (
-        <Script id="gtm" strategy="afterInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
-        </Script>
-      )}
       {show && (
         <div className="consent" role="dialog" aria-live="polite" aria-label="Cookies">
           <p>
-            Nous mesurons l&apos;audience du site et les clics sur « Réserver » avec Google Analytics. Rien n&apos;est
-            déposé sans votre accord.{" "}
+            Nous utilisons des cookies Google pour mesurer l&apos;audience et savoir quelles pages amènent des
+            réservations. Sans votre accord, aucun cookie n&apos;est déposé et Google ne reçoit que des données
+            anonymes.{" "}
             <Link href="/cookies" style={{ color: "var(--brass)" }}>
               En savoir plus
             </Link>

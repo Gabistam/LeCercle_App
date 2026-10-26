@@ -30,8 +30,9 @@ export default function Confidentialite() {
             prénom, nom, email, téléphone et les informations que vous saisissez. Les champs facultatifs sont indiqués.
           </p>
           <p>
-            Pendant la navigation, et seulement si vous l&apos;acceptez : des données de mesure d&apos;audience (pages vues,
-            clics sur les boutons de réservation et d&apos;appel) via Google Tag Manager et Google Analytics.
+            Pendant la navigation : des données de mesure d&apos;audience (pages vues, provenance, clics sur les boutons
+            de réservation et d&apos;appel) via Google Tag Manager et Google Analytics. Avec votre accord, elles sont
+            associées à un cookie ; sans accord, Google ne reçoit que des signaux anonymes sans cookie.
           </p>
           <p>Les réservations sont saisies directement sur Fresha, qui applique sa propre politique.</p>
         </div>

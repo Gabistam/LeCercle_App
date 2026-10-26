@@ -25,9 +25,11 @@ export default function Cookies() {
         <div>
           <h2>Mesure d&apos;audience</h2>
           <p>
-            Google Tag Manager et Google Analytics comptent les visites, leur provenance (Google, publicité, réseaux sociaux) et les clics sur les boutons « Réserver », « Itinéraire » et
-            « Appeler ». Ils ne sont chargés qu&apos;après votre accord dans le bandeau. Sans accord, aucun traceur Google
-            n&apos;est déposé.
+            Google Tag Manager et Google Analytics comptent les visites, leur provenance (Google, publicité, réseaux
+            sociaux) et les clics sur les boutons « Réserver », « Itinéraire » et « Appeler ». Le site utilise le mode
+            consentement de Google : si vous acceptez, des cookies Google sont déposés ; si vous refusez, aucun cookie
+            n&apos;est déposé et Google ne reçoit que des signaux anonymes (sans identifiant), qu&apos;il utilise pour
+            estimer la fréquentation.
           </p>
         </div>
         <div>
