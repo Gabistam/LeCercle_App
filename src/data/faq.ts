@@ -17,6 +17,14 @@ export function faq(s: Salon): QA[] {
       a: `Non. ${s.name} est ouvert à tout le monde, joueurs de padel ou non. Le salon est ${s.location.toLowerCase()}, ${s.address}.`,
     },
     {
+      q: "Comment venir en transports ?",
+      a: "La gare de Saint-Denis (RER D, ligne H et tramway T1) est à environ 600 m, soit une dizaine de minutes à pied. La station Saint-Denis – Porte de Paris (métro 13) est à environ 800 m. Depuis Paris, la station Saint-Denis – Pleyel (métro 14) est à environ 1,3 km.",
+    },
+    {
+      q: "Peut-on se garer ?",
+      a: "Oui, un parking est accessible aux clients du salon.",
+    },
+    {
       q: "Quels sont les horaires ?",
       a:
         monday?.opens && weekday?.opens
