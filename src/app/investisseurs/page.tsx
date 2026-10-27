@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
 import ProForms, { TabLink } from "@/components/ProForms";
 import { JsonLd } from "@/components/ui";
-import { mainSalon } from "@/data/salons";
 import { breadcrumb } from "@/data/schema";
 
 export const metadata: Metadata = {
-  title: "Ouvrir un Cercle : clubs de padel et barbers investisseurs",
+  title: "Franchise barbershop en club de padel : ouvrir un Cercle",
   description:
-    "Un salon barber Le Cercle dans votre club de padel : un service et un revenu sans gestion. Pour les barbers : une clientèle sur place et un concept clé en main.",
+    "Ouvrir un barber shop dans un club de padel : 20 m², 3 fauteuils, une clientèle à 81 % masculine déjà sur place. Franchise Le Cercle pour barbers investisseurs et clubs.",
   alternates: { canonical: "/investisseurs" },
 };
 
 export default function Investisseurs() {
-  const rating = mainSalon.rating!;
   return (
     <>
       <JsonLd data={breadcrumb([{ name: "Accueil", path: "/" }, { name: "Investisseurs", path: "/investisseurs" }])} />
       <section className="section" style={{ paddingBottom: 70 }}>
         <div className="wrap">
-          <span className="eyebrow">Partenaires &amp; investisseurs</span>
+          <span className="eyebrow">Franchise barbershop en club de padel</span>
           <h1 className="h-page" style={{ fontSize: "clamp(42px, 6.4vw, 88px)", lineHeight: 1, maxWidth: "13em" }}>
             Ouvrir un Cercle dans votre club, ou investir <em>dans le réseau.</em>
           </h1>
@@ -32,14 +30,20 @@ export default function Investisseurs() {
         </div>
       </section>
 
-      <div className="wrap">
-        <div className="kpis">
-          <div><span className="eyebrow">Ouvert</span><span className="big">1</span><span className="lab">salon, Saint-Denis</span></div>
-          <div><span className="eyebrow">Signés</span><span className="big">2</span><span className="lab">sites Casa Padel : Croissy-Beaubourg, Asnières-sur-Seine</span></div>
-          <div><span className="eyebrow">Note Google</span><span className="big">{rating.value}</span><span className="lab">sur {rating.count} avis</span></div>
-          <div><span className="eyebrow">Fidélité</span><span className="big">3/5</span><span className="lab">clients reviennent</span></div>
+      <section className="section tight-top" aria-labelledby="marche">
+        <div className="wrap">
+          <h2 className="eyebrow" id="marche" style={{ display: "block", marginBottom: 18, fontFamily: "var(--sans)", fontWeight: 500, fontSize: 11, letterSpacing: ".32em" }}>Le marché du padel en France</h2>
+          <div className="kpis">
+            <div><span className="eyebrow">Clubs</span><span className="big">1 150</span><span className="lab">établissements de padel</span></div>
+            <div><span className="eyebrow">Pistes</span><span className="big">3 800</span><span className="lab">+311 % depuis 2020</span></div>
+            <div><span className="eyebrow">Joueurs</span><span className="big">360 000</span><span className="lab">pratiquants identifiés par la FFT</span></div>
+            <div><span className="eyebrow">Clientèle</span><span className="big">81 %</span><span className="lab">d&apos;hommes, 35 ans en moyenne</span></div>
+          </div>
+          <p className="muted" style={{ fontSize: 13, marginTop: 18 }}>
+            Source : L&apos;Express Franchise, « Comment se porte le marché du padel en France en 2026 ? », 4 mars 2026.
+          </p>
         </div>
-      </div>
+      </section>
 
       <section className="section">
         <div className="wrap cols2">
@@ -112,6 +116,7 @@ export default function Investisseurs() {
               Votre Cercle <em>dans un club.</em>
             </h2>
             <ul className="list">
+              <li><span>Cible</span><span>81 % des joueurs de padel sont des hommes, 35 ans en moyenne : le cœur de clientèle d&apos;un barbershop.</span></li>
               <li><span>Clientèle</span><span>Des joueurs déjà sur place toute la journée. Pas besoin d&apos;une vitrine en centre-ville pour être vu.</span></li>
               <li><span>Fidélité</span><span>Les joueurs reviennent au club chaque semaine, donc au fauteuil aussi.</span></li>
               <li><span>Clé en main</span><span>Marque, mobilier, charte et outils de réservation fournis. Vous ouvrez avec un concept qui tourne déjà.</span></li>
