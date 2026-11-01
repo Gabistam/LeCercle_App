@@ -34,6 +34,7 @@ export default function Footer() {
               <Link href="/salons">Nos salons</Link>
               <Link href="/investisseurs">Investisseurs</Link>
               <Link href="/contact">Contact</Link>
+              <Link href="/en" hrefLang="en">English</Link>
             </div>
             <div>
               <span className="eyebrow">Suivre</span>
