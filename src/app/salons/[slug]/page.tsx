@@ -133,6 +133,10 @@ export default async function SalonPage({ params }: { params: Promise<{ slug: st
                 Toute la carte
               </Link>
             </div>
+            <p className="muted small">
+              Par prestation : <Link href="/homme/degrade">dégradé</Link> · <Link href="/homme/barbe">barbe</Link> ·{" "}
+              <Link href="/homme/enfant">coupe enfant</Link> · <Link href="/en" hrefLang="en">English</Link>
+            </p>
           </div>
           <div className="menu">
             <div className="menu-group">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Gallery, JsonLd, MenuItems } from "@/components/ui";
 import { carte, forfaits } from "@/data/carte";
 import { mainSalon } from "@/data/salons";
@@ -46,7 +47,11 @@ export default function Homme() {
             <h2>
               Cinq <em>rituels</em>, du plus simple au plus complet.
             </h2>
-            <p className="muted">Tarifs du {mainSalon.name}, TTC. Durées indicatives.</p>
+            <p className="muted">Tarifs TTC du salon de {mainSalon.city}. Durées indicatives.</p>
+            <p className="muted small">
+              Par prestation : <Link href="/homme/degrade">dégradé</Link> · <Link href="/homme/barbe">barbe</Link> ·{" "}
+              <Link href="/homme/enfant">coupe enfant</Link>
+            </p>
           </div>
           <div className="menu">
             <div className="menu-group">
