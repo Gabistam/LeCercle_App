@@ -23,7 +23,7 @@ export const services: Record<"degrade" | "barbe" | "enfant", ServiceProps & { m
     slug: "degrade",
     crumb: "Dégradé",
     serviceName: "Coupe dégradée",
-    metaTitle: "Dégradé homme à Saint-Denis (93) : coupe dès 24 €",
+    metaTitle: "Dégradé homme Saint-Denis : coupe dès 24 €",
     metaDescription:
       "Dégradé à Saint-Denis, à côté du Casa Padel : coupe tondeuse 24 €, coupe et barbe 35 €. Avec ou sans rendez-vous, du lundi au samedi jusqu'à 21 h.",
     eyebrow: "Dégradé · Saint-Denis",
@@ -53,7 +53,7 @@ export const services: Record<"degrade" | "barbe" | "enfant", ServiceProps & { m
     slug: "barbe",
     crumb: "Barbe",
     serviceName: "Taille de barbe",
-    metaTitle: "Taille de barbe à Saint-Denis (93) : barbe dès 15 €",
+    metaTitle: "Taille de barbe Saint-Denis : dès 15 €",
     metaDescription:
       "Taille de barbe à Saint-Denis : barbe tondeuse 15 €, barbe signature avec serviette chaude 20 €, coupe et barbe dès 35 €. Avec ou sans rendez-vous.",
     eyebrow: "Barbe · Saint-Denis",

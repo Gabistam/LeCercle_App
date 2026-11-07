@@ -4,9 +4,9 @@ import { JsonLd } from "@/components/ui";
 import { breadcrumb } from "@/data/schema";
 
 export const metadata: Metadata = {
-  title: "Franchise barbershop en club de padel : ouvrir un Cercle",
+  title: "Franchise barbershop en club de padel",
   description:
-    "Ouvrir un barber shop dans un club de padel : 20 m², 3 fauteuils, une clientèle à 81 % masculine déjà sur place. Franchise Le Cercle pour barbers investisseurs et clubs.",
+    "Ouvrir un barber shop dans un club de padel : 20 m², 3 fauteuils et une clientèle à 81 % masculine déjà sur place.",
   alternates: { canonical: "/investisseurs" },
 };
 
